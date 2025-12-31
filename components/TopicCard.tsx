@@ -15,14 +15,43 @@ export default function TopicCard({ topic, monthId, weekId, onToggleTask }: Topi
   const totalCount = topic.tasks.length;
   const progress = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
 
+  const getPriorityBadge = () => {
+    if (!topic.priority) return null;
+    
+    const priorityConfig = {
+      "very-high": { label: "🔥 Very High Priority", color: "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30" },
+      "high": { label: "⭐ High Priority", color: "bg-orange-500/20 text-orange-600 dark:text-orange-400 border-orange-500/30" },
+      "medium": { label: "📚 Medium Priority", color: "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30" },
+      "low": { label: "📝 Low Priority", color: "bg-gray-500/20 text-gray-600 dark:text-gray-400 border-gray-500/30" },
+    };
+
+    const config = priorityConfig[topic.priority];
+    if (!config) return null;
+
+    return (
+      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${config.color} mb-2`}>
+        {config.label}
+      </span>
+    );
+  };
+
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border border-gray-200 dark:border-gray-700 shadow-sm">
+    <div className={`bg-white dark:bg-gray-800 rounded-lg p-5 border shadow-sm ${
+      topic.priority === "very-high" 
+        ? "border-red-500/30 dark:border-red-500/20 bg-red-50/30 dark:bg-red-900/10" 
+        : topic.priority === "high"
+        ? "border-orange-500/30 dark:border-orange-500/20 bg-orange-50/20 dark:bg-orange-900/10"
+        : "border-gray-200 dark:border-gray-700"
+    }`}>
       <div className="mb-4">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-              {topic.title}
-            </h4>
+            <div className="flex items-center gap-2 flex-wrap mb-1">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {topic.title}
+              </h4>
+              {getPriorityBadge()}
+            </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{topic.description}</p>
             <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-500">
               <span className="flex items-center gap-1">

@@ -5,12 +5,15 @@ export interface Task {
   youtubeLink?: string;
 }
 
+export type Priority = "very-high" | "high" | "medium" | "low";
+
 export interface Topic {
   id: string;
   title: string;
   description: string;
   youtubeLinks?: string[];
   tasks: Task[];
+  priority?: Priority;
 }
 
 export interface Week {
@@ -44,6 +47,7 @@ export const learningPlan: Month[] = [
             id: "m1w1t1",
             title: "Web Fundamentals",
             description: "HTTP vs HTTPS, DNS, Request/Response cycle",
+            priority: "low",
             youtubeLinks: [
               "How does the web work",
               "HTTP vs HTTPS explained",
@@ -60,6 +64,7 @@ export const learningPlan: Month[] = [
             id: "m1w1t2",
             title: "Git Basics",
             description: "git init, git add, git commit, git push, git branch",
+            priority: "low",
             youtubeLinks: ["Git & GitHub tutorial for beginners"],
             tasks: [
               { id: "m1w1t2task1", text: "Watch: Git & GitHub tutorial for beginners", completed: false },
@@ -71,6 +76,7 @@ export const learningPlan: Month[] = [
             id: "m1w1t3",
             title: "GitHub Setup",
             description: "Create repo, push first file",
+            priority: "low",
             youtubeLinks: ["GitHub tutorial for beginners 2026"],
             tasks: [
               { id: "m1w1t3task1", text: "Watch: GitHub tutorial for beginners 2026", completed: false },
@@ -90,6 +96,7 @@ export const learningPlan: Month[] = [
             id: "m1w2t1",
             title: "JavaScript Fundamentals",
             description: "Variables, Loops, Functions, Arrays, Objects, Strings",
+            priority: "very-high",
             youtubeLinks: [
               "JavaScript basics for beginners",
               "JavaScript ES6 tutorial",
@@ -109,6 +116,7 @@ export const learningPlan: Month[] = [
             id: "m1w2t2",
             title: "Problem Solving Practice",
             description: "Solve 10 basic problems on HackerRank/LeetCode",
+            priority: "very-high",
             youtubeLinks: ["JavaScript coding interview problems beginners"],
             tasks: [
               { id: "m1w2t2task1", text: "Watch: JavaScript coding interview problems beginners", completed: false },
@@ -126,6 +134,7 @@ export const learningPlan: Month[] = [
             id: "m1w3t1",
             title: "ES6+ Features",
             description: "Arrow Functions, Template Literals, Async/Await, Promises, Try/Catch",
+            priority: "very-high",
             youtubeLinks: [
               "JavaScript ES6 features",
               "JavaScript Async Await tutorial",
@@ -146,6 +155,7 @@ export const learningPlan: Month[] = [
             id: "m1w3t2",
             title: "Intermediate Problem Solving",
             description: "Solve 10 medium JS problems",
+            priority: "very-high",
             tasks: [
               { id: "m1w3t2task1", text: "Solve 10 Medium JS Problems (LeetCode/HackerRank)", completed: false },
             ],
@@ -161,6 +171,7 @@ export const learningPlan: Month[] = [
             id: "m1w4t1",
             title: "Data Structures",
             description: "Stack, Queue, Linked List, Linear Search, Bubble Sort",
+            priority: "very-high",
             youtubeLinks: [
               "Data Structures JavaScript",
               "JavaScript algorithms for beginners",
@@ -181,6 +192,7 @@ export const learningPlan: Month[] = [
             id: "m1w4t2",
             title: "Problem Solving Challenge",
             description: "Solve logic problems and Array/String problems",
+            priority: "very-high",
             tasks: [
               { id: "m1w4t2task1", text: "Solve 10 Logic Problems (Sorting/Searching)", completed: false },
               { id: "m1w4t2task2", text: "Solve 5 Medium 'Array + String' Problems", completed: false },
@@ -205,6 +217,7 @@ export const learningPlan: Month[] = [
             id: "m2w1t1",
             title: "Node.js Fundamentals",
             description: "Node.js runtime, Modules, Express basics",
+            priority: "very-high",
             youtubeLinks: [
               "Node.js crash course 2026",
               "Express.js tutorial for beginners",
@@ -221,6 +234,7 @@ export const learningPlan: Month[] = [
             id: "m2w1t2",
             title: "REST API Basics",
             description: "Build Hello World API and test with Postman",
+            priority: "very-high",
             youtubeLinks: [
               "Node.js REST API tutorial",
               "Postman API testing tutorial",
@@ -243,6 +257,7 @@ export const learningPlan: Month[] = [
             id: "m2w2t1",
             title: "MongoDB & Mongoose",
             description: "MongoDB CRUD with Mongoose, Schemas, Models",
+            priority: "very-high",
             youtubeLinks: [
               "MongoDB tutorial for beginners",
               "Mongoose CRUD Node.js",
@@ -259,6 +274,7 @@ export const learningPlan: Month[] = [
             id: "m2w2t2",
             title: "Authentication & Security",
             description: "JWT, bcrypt password hashing",
+            priority: "very-high",
             youtubeLinks: [
               "JWT authentication Node.js tutorial",
               "bcrypt password hashing Node.js",
@@ -275,6 +291,7 @@ export const learningPlan: Month[] = [
             id: "m2w2t3",
             title: "Bookstore API Project",
             description: "Complete API with registration/login + CRUD",
+            priority: "very-high",
             tasks: [
               { id: "m2w2t3task1", text: "Build: Bookstore API with Registration/Login", completed: false },
               { id: "m2w2t3task2", text: "Implement: Book CRUD Operations", completed: false },
@@ -292,6 +309,7 @@ export const learningPlan: Month[] = [
             id: "m2w3t1",
             title: "TypeScript Fundamentals",
             description: "Types, Interfaces, Generics, Strict Mode",
+            priority: "high",
             youtubeLinks: [
               "TypeScript tutorial for beginners 2026",
               "TypeScript strict mode explained",
@@ -309,6 +327,7 @@ export const learningPlan: Month[] = [
             id: "m2w3t2",
             title: "Refactor to TypeScript",
             description: "Convert Bookstore API from JavaScript to TypeScript",
+            priority: "high",
             tasks: [
               { id: "m2w3t2task1", text: "Refactor: Bookstore API to TypeScript", completed: false },
               { id: "m2w3t2task2", text: "Enable: Strict Mode in tsconfig.json", completed: false },
@@ -327,6 +346,7 @@ export const learningPlan: Month[] = [
             id: "m2w4t1",
             title: "Assignment A: Inventory API",
             description: "Prevent selling if stock < requested quantity",
+            priority: "high",
             youtubeLinks: ["Node.js inventory management project"],
             tasks: [
               { id: "m2w4t1task1", text: "Watch: Node.js inventory management project", completed: false },
@@ -340,6 +360,7 @@ export const learningPlan: Month[] = [
             id: "m2w4t2",
             title: "Assignment B: Auth System",
             description: "Simple Auth System with admin-only dashboard",
+            priority: "high",
             youtubeLinks: ["Node.js role based authentication tutorial"],
             tasks: [
               { id: "m2w4t2task1", text: "Watch: Node.js role based authentication tutorial", completed: false },
@@ -367,6 +388,7 @@ export const learningPlan: Month[] = [
             id: "m3w1t1",
             title: "Database Design",
             description: "ER Diagrams, Normalization, SQL queries",
+            priority: "very-high",
             youtubeLinks: [
               "PostgreSQL tutorial for beginners",
               "ER diagrams tutorial",
@@ -392,6 +414,7 @@ export const learningPlan: Month[] = [
             id: "m3w2t1",
             title: "Prisma Setup & Schema",
             description: "Schema, Migrations, Relations (1:1, 1:N, N:N)",
+            priority: "very-high",
             youtubeLinks: [
               "Prisma ORM tutorial",
               "Prisma Node.js tutorial",
@@ -420,6 +443,7 @@ export const learningPlan: Month[] = [
             id: "m3w3t1",
             title: "Next.js App Router",
             description: "App Router, Server Actions, Server Components, API Routes",
+            priority: "medium",
             youtubeLinks: [
               "Next.js 14 tutorial",
               "Next.js API routes tutorial",
@@ -437,6 +461,7 @@ export const learningPlan: Month[] = [
             id: "m3w3t2",
             title: "Blog App Project",
             description: "Small Blog App (Next.js + Prisma)",
+            priority: "medium",
             tasks: [
               { id: "m3w3t2task1", text: "Build: Small Blog App with Next.js + Prisma", completed: false },
               { id: "m3w3t2task2", text: "Implement: Create Post functionality", completed: false },
@@ -456,6 +481,7 @@ export const learningPlan: Month[] = [
             id: "m3w4t1",
             title: "Architecture Patterns",
             description: "Service-Controller pattern, modular folder structure",
+            priority: "medium",
             youtubeLinks: [
               "Node.js service controller architecture",
               "Node.js project structure best practices",
@@ -471,6 +497,7 @@ export const learningPlan: Month[] = [
             id: "m3w4t2",
             title: "University Management System",
             description: "Backend with complex relations",
+            priority: "medium",
             tasks: [
               { id: "m3w4t2task1", text: "Build: Backend for University Management System", completed: false },
               { id: "m3w4t2task2", text: "Implement: Complex Relations (1-to-many)", completed: false },
@@ -498,6 +525,7 @@ export const learningPlan: Month[] = [
             id: "m4w1t1",
             title: "Next.js 14 Setup",
             description: "Project initialization and configuration",
+            priority: "very-high",
             tasks: [
               { id: "m4w1t1task1", text: "Initialize: Next.js 14 project", completed: false },
               { id: "m4w1t1task2", text: "Setup: Project folder structure", completed: false },
@@ -508,6 +536,7 @@ export const learningPlan: Month[] = [
             id: "m4w1t2",
             title: "NextAuth Multi-Role Authentication",
             description: "3-Role Auth (Admin, Provider, User) via NextAuth",
+            priority: "very-high",
             youtubeLinks: ["Next.js NextAuth multi role authentication"],
             tasks: [
               { id: "m4w1t2task1", text: "Watch: Next.js NextAuth multi role authentication", completed: false },
@@ -529,6 +558,7 @@ export const learningPlan: Month[] = [
             id: "m4w2t1",
             title: "Service Booking Logic",
             description: "Date/Time Slot selection logic",
+            priority: "very-high",
             youtubeLinks: ["Next.js booking system tutorial"],
             tasks: [
               { id: "m4w2t1task1", text: "Watch: Next.js booking system tutorial", completed: false },
@@ -542,6 +572,7 @@ export const learningPlan: Month[] = [
             id: "m4w2t2",
             title: "Database Schema",
             description: "Relational Schema (User → Booking → Service)",
+            priority: "very-high",
             youtubeLinks: ["Prisma relations tutorial"],
             tasks: [
               { id: "m4w2t2task1", text: "Watch: Prisma relations tutorial", completed: false },
@@ -562,6 +593,7 @@ export const learningPlan: Month[] = [
             id: "m4w3t1",
             title: "Provider Panel",
             description: "Accept/Reject jobs",
+            priority: "very-high",
             youtubeLinks: ["React dashboard tutorial"],
             tasks: [
               { id: "m4w3t1task1", text: "Watch: React dashboard tutorial", completed: false },
@@ -575,6 +607,7 @@ export const learningPlan: Month[] = [
             id: "m4w3t2",
             title: "Admin Panel",
             description: "Manage categories & users",
+            priority: "very-high",
             youtubeLinks: ["Next.js admin panel tutorial"],
             tasks: [
               { id: "m4w3t2task1", text: "Watch: Next.js admin panel tutorial", completed: false },
@@ -595,6 +628,7 @@ export const learningPlan: Month[] = [
             id: "m4w4t1",
             title: "Database Deployment",
             description: "Deploy DB to Neon/Supabase",
+            priority: "very-high",
             youtubeLinks: ["Supabase tutorial"],
             tasks: [
               { id: "m4w4t1task1", text: "Watch: Supabase tutorial", completed: false },
@@ -607,6 +641,7 @@ export const learningPlan: Month[] = [
             id: "m4w4t2",
             title: "App Deployment",
             description: "Deploy app to Vercel",
+            priority: "very-high",
             youtubeLinks: ["Vercel deployment tutorial Next.js"],
             tasks: [
               { id: "m4w4t2task1", text: "Watch: Vercel deployment tutorial Next.js", completed: false },
@@ -619,6 +654,7 @@ export const learningPlan: Month[] = [
             id: "m4w4t3",
             title: "API Documentation",
             description: "Add Swagger/Postman docs",
+            priority: "medium",
             youtubeLinks: ["Swagger tutorial for Node.js"],
             tasks: [
               { id: "m4w4t3task1", text: "Watch: Swagger tutorial for Node.js", completed: false },
@@ -646,6 +682,7 @@ export const learningPlan: Month[] = [
             id: "m5w1t1",
             title: "Microservices Setup",
             description: "Node.js microservices architecture",
+            priority: "very-high",
             youtubeLinks: ["Node.js microservices tutorial"],
             tasks: [
               { id: "m5w1t1task1", text: "Watch: Node.js microservices tutorial", completed: false },
@@ -658,6 +695,7 @@ export const learningPlan: Month[] = [
             id: "m5w1t2",
             title: "Redis Caching",
             description: "Redis installation & connection",
+            priority: "very-high",
             youtubeLinks: ["Redis Node.js tutorial"],
             tasks: [
               { id: "m5w1t2task1", text: "Watch: Redis Node.js tutorial", completed: false },
@@ -677,6 +715,7 @@ export const learningPlan: Month[] = [
             id: "m5w2t1",
             title: "Geo-Spatial Tracking",
             description: "Mock driver GPS tracking",
+            priority: "very-high",
             youtubeLinks: ["Node.js real time tracking tutorial"],
             tasks: [
               { id: "m5w2t1task1", text: "Watch: Node.js real time tracking tutorial", completed: false },
@@ -689,6 +728,7 @@ export const learningPlan: Month[] = [
             id: "m5w2t2",
             title: "Redis Caching Strategy",
             description: "Store active drivers in Redis",
+            priority: "very-high",
             youtubeLinks: ["Redis caching tutorial Node.js"],
             tasks: [
               { id: "m5w2t2task1", text: "Watch: Redis caching tutorial Node.js", completed: false },
@@ -708,6 +748,7 @@ export const learningPlan: Month[] = [
             id: "m5w3t1",
             title: "SQL Analytics",
             description: "SQL aggregation queries, ACID transactions",
+            priority: "very-high",
             tasks: [
               { id: "m5w3t1task1", text: "Practice: SQL Aggregation (SUM, COUNT, AVG)", completed: false },
               { id: "m5w3t1task2", text: "Practice: GROUP BY queries", completed: false },
@@ -719,6 +760,7 @@ export const learningPlan: Month[] = [
             id: "m5w3t2",
             title: "Unit Testing",
             description: "Jest + Supertest for API testing",
+            priority: "medium",
             youtubeLinks: [
               "Node.js Jest tutorial",
               "Node.js Supertest tutorial",
@@ -743,6 +785,7 @@ export const learningPlan: Month[] = [
             id: "m5w4t1",
             title: "Docker Setup",
             description: "Dockerfile, docker-compose, containerization",
+            priority: "very-high",
             youtubeLinks: [
               "Docker Node.js tutorial",
               "docker-compose Node.js tutorial",
@@ -775,6 +818,7 @@ export const learningPlan: Month[] = [
             id: "m6w1t1",
             title: "NGINX Reverse Proxy",
             description: "NGINX configuration and reverse proxy setup",
+            priority: "low",
             youtubeLinks: ["NGINX reverse proxy tutorial"],
             tasks: [
               { id: "m6w1t1task1", text: "Watch: NGINX reverse proxy tutorial", completed: false },
@@ -787,6 +831,7 @@ export const learningPlan: Month[] = [
             id: "m6w1t2",
             title: "Process Monitoring",
             description: "PM2 monitoring for Node.js",
+            priority: "low",
             youtubeLinks: ["PM2 Node.js tutorial"],
             tasks: [
               { id: "m6w1t2task1", text: "Watch: PM2 Node.js tutorial", completed: false },
@@ -806,6 +851,7 @@ export const learningPlan: Month[] = [
             id: "m6w2t1",
             title: "GitHub Portfolio",
             description: "Update GitHub with screenshots, README.md, deployment instructions",
+            priority: "medium",
             youtubeLinks: [
               "How to create a developer portfolio on GitHub",
               "GitHub README tutorial",
@@ -823,6 +869,7 @@ export const learningPlan: Month[] = [
             id: "m6w2t2",
             title: "Resume Update",
             description: "Highlight key technologies and projects",
+            priority: "medium",
             tasks: [
               { id: "m6w2t2task1", text: "Update: Resume with latest projects", completed: false },
               { id: "m6w2t2task2", text: "Highlight: Docker, Prisma, Next.js, PostgreSQL keywords", completed: false },
@@ -841,6 +888,7 @@ export const learningPlan: Month[] = [
             id: "m6w3t1",
             title: "Technical Interview Prep",
             description: "Practice verbal answers for common questions",
+            priority: "medium",
             youtubeLinks: ["Node.js interview questions"],
             tasks: [
               { id: "m6w3t1task1", text: "Watch: Node.js interview questions", completed: false },
@@ -854,6 +902,7 @@ export const learningPlan: Month[] = [
             id: "m6w3t2",
             title: "System Design Practice",
             description: "System design diagrams and whiteboard practice",
+            priority: "medium",
             youtubeLinks: ["Backend system design for beginners"],
             tasks: [
               { id: "m6w3t2task1", text: "Watch: Backend system design for beginners", completed: false },
@@ -873,6 +922,7 @@ export const learningPlan: Month[] = [
             id: "m6w4t1",
             title: "Job Applications",
             description: "Apply to 20+ Junior/Intern roles",
+            priority: "medium",
             youtubeLinks: ["How to apply for software jobs in Bangladesh 2026"],
             tasks: [
               { id: "m6w4t1task1", text: "Watch: How to apply for software jobs in Bangladesh 2026", completed: false },
