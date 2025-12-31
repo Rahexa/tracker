@@ -1,7 +1,7 @@
 "use client";
 
 import { Topic } from "@/data/learningPlan";
-import { CheckCircle2, Circle, ExternalLink, Youtube } from "lucide-react";
+import { CheckCircle2, Circle, Youtube } from "lucide-react";
 
 interface TopicCardProps {
   topic: Topic;
@@ -14,11 +14,6 @@ export default function TopicCard({ topic, monthId, weekId, onToggleTask }: Topi
   const completedCount = topic.tasks.filter((t) => t.completed).length;
   const totalCount = topic.tasks.length;
   const progress = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
-
-  const searchYouTube = (query: string) => {
-    const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
-    window.open(url, "_blank");
-  };
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border border-gray-200 dark:border-gray-700 shadow-sm">
@@ -52,19 +47,17 @@ export default function TopicCard({ topic, monthId, weekId, onToggleTask }: Topi
           <div className="flex items-center gap-2 mb-2">
             <Youtube className="w-4 h-4 text-red-600 dark:text-red-400" />
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              YouTube Resources:
+              YouTube Search Keywords:
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
             {topic.youtubeLinks.map((link, index) => (
-              <button
+              <span
                 key={index}
-                onClick={() => searchYouTube(link)}
-                className="flex items-center gap-1 px-2 py-1 text-xs bg-white dark:bg-gray-700 border border-yellow-300 dark:border-yellow-700 rounded hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition-colors text-gray-700 dark:text-gray-300"
+                className="px-2 py-1 text-xs bg-white dark:bg-gray-700 border border-yellow-300 dark:border-yellow-700 rounded text-gray-700 dark:text-gray-300"
               >
-                <span>{link}</span>
-                <ExternalLink className="w-3 h-3" />
-              </button>
+                {link}
+              </span>
             ))}
           </div>
         </div>

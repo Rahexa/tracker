@@ -9,7 +9,7 @@ export interface Topic {
   id: string;
   title: string;
   description: string;
-  youtubeLinks: string[];
+  youtubeLinks?: string[];
   tasks: Task[];
 }
 
