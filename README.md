@@ -1,15 +1,17 @@
 # 📚 Learning Tracker - 6-Month Full Stack Journey
 
-A beautiful, interactive web application to track your progress through a comprehensive 6-month full-stack development learning plan.
+A beautiful, interactive web application to track your progress through a comprehensive 6-month full-stack development learning plan. Track tasks, watch YouTube tutorials, and monitor your journey from JavaScript basics to deploying production applications.
 
 ## 🚀 Features
 
-- **Monthly & Weekly Progress Tracking**: Visual progress indicators for each month and week
-- **Interactive Dashboard**: Clean, modern UI with progress cards
-- **Task Completion**: Mark deliverables as complete with checkboxes
-- **Progress Persistence**: Your progress is saved locally
-- **Responsive Design**: Works perfectly on all devices
-- **Vercel Ready**: Optimized for deployment on Vercel
+- **📊 Comprehensive Progress Tracking**: Track progress at month, week, topic, and task levels
+- **✅ Task-Based Checklists**: Every topic has detailed task checklists (not just week-wise)
+- **🎥 YouTube Integration**: Quick access to YouTube tutorials for each topic
+- **📈 Visual Progress Indicators**: Beautiful progress bars and statistics
+- **💾 Auto-Save**: Your progress is automatically saved in browser localStorage
+- **🌙 Dark Mode Support**: Automatic dark mode based on system preferences
+- **📱 Responsive Design**: Works perfectly on desktop, tablet, and mobile
+- **🚀 Production Ready**: Optimized for deployment on Vercel and Netlify
 
 ## 🛠️ Tech Stack
 
@@ -60,14 +62,30 @@ See [NETLIFY_DEPLOY.md](./NETLIFY_DEPLOY.md) for detailed instructions and troub
 
 ## 📅 Learning Plan Overview
 
-The application tracks progress through 6 months:
+The application tracks progress through 6 months with detailed task checklists:
 
-- **Month 1**: Foundations & Logic (JavaScript, DSA)
-- **Month 2**: The First Backend (Node.js, MongoDB, TypeScript)
-- **Month 3**: The Professional Standard (SQL, Prisma, Next.js)
-- **Month 4**: Capstone Project 1 - DeshDoor
-- **Month 5**: Capstone Project 2 - RideShare Backend
-- **Month 6**: DevOps & Job Hunt
+- **Month 1**: Foundations & JavaScript (Web basics, Git, JS Core, Modern JS, DSA)
+- **Month 2**: First Backend + TypeScript (Node.js, Express, MongoDB, Auth, TypeScript)
+- **Month 3**: SQL & Prisma ORM (PostgreSQL, Prisma, Next.js, Advanced CRUD)
+- **Month 4**: Capstone Project 1 – DeshDoor (Service Booking System)
+- **Month 5**: Capstone Project 2 – RideShare Backend (Microservices, Redis, Docker)
+- **Month 6**: DevOps & Job Hunt (NGINX, PM2, Resume, Interviews, Applications)
+
+### 📋 Task Organization
+
+Each month is organized into:
+- **Weeks**: 4 weeks per month
+- **Topics**: Multiple topics per week (e.g., "Web Fundamentals", "Git Basics")
+- **Tasks**: Detailed checklist items for each topic
+- **YouTube Links**: Quick access to relevant tutorials
+
+### ✨ Key Improvements
+
+- ✅ **Task-based tracking** instead of just deliverables
+- ✅ **YouTube tutorial links** integrated for easy learning
+- ✅ **Better organization** with topics and subtasks
+- ✅ **Enhanced UI** with improved visual design
+- ✅ **More detailed progress** tracking at all levels
 
 ## 📝 License
 
