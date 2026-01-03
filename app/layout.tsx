@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Daily Task Manager',
-  description: 'Manage your daily tasks with automatic pending tracking',
+  title: 'Backend Developer Roadmap Tracker',
+  description: 'Track your 6-month journey to becoming a backend developer',
 };
 
 export default function RootLayout({
@@ -20,4 +20,7 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
 
