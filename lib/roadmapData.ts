@@ -86,9 +86,13 @@ export const roadmapData: Month[] = [
           createItem('javascript async await fetch api tutorial', 'search', 'javascript async await fetch api tutorial'),
           createItem('javascript promises explained', 'search', 'javascript promises explained'),
         ]),
-        createDay(6, 'Practice & Logic', [
-          createItem('Solving basic array manipulation problems (Filter, Find, Reduce)', 'practice'),
-          createItem('javascript map filter reduce exercises', 'search', 'javascript map filter reduce exercises'),
+        createDay(6, 'Error Handling Patterns', [
+          createItem('Custom Error Classes', 'topic'),
+          createItem('Error Propagation', 'topic'),
+          createItem('Graceful Degradation', 'topic'),
+          createItem('Error Boundaries', 'topic'),
+          createItem('javascript custom error classes', 'search', 'javascript custom error classes'),
+          createItem('error handling best practices javascript 2026', 'search', 'error handling best practices javascript 2026'),
         ]),
         createDay(7, 'Review & Rest', []),
       ]),
@@ -193,10 +197,15 @@ export const roadmapData: Month[] = [
           createItem('O(1) vs O(n) vs O(n^2)', 'topic'),
           createItem('big o notation explained javascript', 'search', 'big o notation explained javascript'),
         ]),
-        createDay(5, 'Logic Practice (Strings)', [
-          createItem('String reversal', 'practice'),
-          createItem('Palindromes', 'practice'),
-          createItem('Anagrams', 'practice'),
+        createDay(5, 'Git Advanced', [
+          createItem('Git Merge vs Rebase', 'topic'),
+          createItem('Resolving Conflicts', 'topic'),
+          createItem('Cherry-pick', 'topic'),
+          createItem('Git Hooks', 'topic'),
+          createItem('Husky Setup', 'topic'),
+          createItem('git merge vs rebase explained', 'search', 'git merge vs rebase explained'),
+          createItem('git hooks husky tutorial', 'search', 'git hooks husky tutorial'),
+          createItem('git conflict resolution', 'search', 'git conflict resolution'),
         ]),
         createDay(6, 'Logic Practice (Arrays)', [
           createItem('Sorting', 'practice'),
@@ -215,10 +224,14 @@ export const roadmapData: Month[] = [
     completed: false,
     weeks: [
       createWeek(1, 'Node.js, Express & Debugging', [
-        createDay(1, 'File System', [
+        createDay(1, 'File System & Streams', [
           createItem('Reading/Writing files (fs module)', 'topic'),
           createItem('path manipulation', 'topic'),
+          createItem('Streams for Large Files', 'topic'),
+          createItem('Buffer vs Stream', 'topic'),
           createItem('nodejs fs module tutorial', 'search', 'nodejs fs module tutorial'),
+          createItem('nodejs streams explained', 'search', 'nodejs streams explained'),
+          createItem('readable writable streams nodejs', 'search', 'readable writable streams nodejs'),
         ]),
         createDay(2, 'Express Server Setup', [
           createItem('Creating a server', 'topic'),
@@ -231,28 +244,45 @@ export const roadmapData: Month[] = [
           createItem('next()', 'topic'),
           createItem('express middleware explained', 'search', 'express middleware explained'),
         ]),
-        createDay(4, 'Error Handling', [
-          createItem('Try/Catch in routes', 'topic'),
-          createItem('Global Error Handler middleware', 'topic'),
-          createItem('express global error handler', 'search', 'express global error handler'),
+        createDay(4, 'Input Validation & Sanitization', [
+          createItem('Zod Validation Library', 'topic'),
+          createItem('Express-validator', 'topic'),
+          createItem('XSS Prevention', 'topic'),
+          createItem('SQL Injection Prevention', 'topic'),
+          createItem('Input Sanitization', 'topic'),
+          createItem('zod express validation tutorial', 'search', 'zod express validation tutorial'),
+          createItem('prevent xss attacks nodejs', 'search', 'prevent xss attacks nodejs'),
+          createItem('input sanitization nodejs', 'search', 'input sanitization nodejs'),
         ]),
-        createDay(5, 'VS Code Debugging', [
-          createItem('Breakpoints', 'topic'),
-          createItem('Watch window', 'topic'),
-          createItem('Call Stack navigation', 'topic'),
-          createItem('debugging nodejs in vscode', 'search', 'debugging nodejs in vscode'),
+        createDay(5, 'Unit Testing Basics', [
+          createItem('Jest/Vitest Setup', 'topic'),
+          createItem('Writing Test Cases', 'topic'),
+          createItem('Assertions (expect)', 'topic'),
+          createItem('Mocking Functions', 'topic'),
+          createItem('Test Coverage', 'topic'),
+          createItem('jest nodejs tutorial', 'search', 'jest nodejs tutorial'),
+          createItem('vitest vs jest 2026', 'search', 'vitest vs jest 2026'),
+          createItem('nodejs unit testing best practices', 'search', 'nodejs unit testing best practices'),
         ]),
-        createDay(6, 'Mini Project (API)', [
-          createItem('Building a CRUD API with in-memory data (no DB yet)', 'project'),
+        createDay(6, 'Testing Express Routes', [
+          createItem('Supertest Library', 'topic'),
+          createItem('Testing GET/POST/PUT/DELETE', 'topic'),
+          createItem('Testing Middleware', 'topic'),
+          createItem('Status Code Assertions', 'topic'),
+          createItem('supertest express api testing', 'search', 'supertest express api testing'),
+          createItem('testing express middleware jest', 'search', 'testing express middleware jest'),
         ]),
         createDay(7, 'Review & Rest', []),
       ]),
       createWeek(2, 'MongoDB & Mongoose', [
-        createDay(1, 'MongoDB Compass & Atlas', [
-          createItem('Cloud Database setup', 'topic'),
+        createDay(1, 'MongoDB Setup & Design Patterns', [
+          createItem('MongoDB Compass & Atlas', 'topic'),
           createItem('Connection strings', 'topic'),
           createItem('Collections', 'topic'),
+          createItem('Document Design Patterns (Embedding vs Referencing)', 'topic'),
           createItem('mongodb atlas tutorial', 'search', 'mongodb atlas tutorial'),
+          createItem('mongodb schema design patterns', 'search', 'mongodb schema design patterns'),
+          createItem('embedding vs referencing mongodb', 'search', 'embedding vs referencing mongodb'),
         ]),
         createDay(2, 'Mongoose Schemas', [
           createItem('Defining Models', 'topic'),
@@ -261,12 +291,16 @@ export const roadmapData: Month[] = [
           createItem('Required fields', 'topic'),
           createItem('mongoose schema validation', 'search', 'mongoose schema validation'),
         ]),
-        createDay(3, 'Advanced Queries', [
+        createDay(3, 'Advanced Queries & Indexing', [
           createItem('Filtering ($gt, $lt)', 'topic'),
           createItem('Logic ($or, $and)', 'topic'),
           createItem('Sorting', 'topic'),
           createItem('Limiting', 'topic'),
+          createItem('Creating Indexes', 'topic'),
+          createItem('Index Types (Single, Compound, Text)', 'topic'),
           createItem('mongodb advanced queries tutorial', 'search', 'mongodb advanced queries tutorial'),
+          createItem('mongodb indexing best practices', 'search', 'mongodb indexing best practices'),
+          createItem('mongodb compound indexes', 'search', 'mongodb compound indexes'),
         ]),
         createDay(4, 'Aggregation Framework', [
           createItem('Pipelines', 'topic'),
@@ -275,11 +309,14 @@ export const roadmapData: Month[] = [
           createItem('$lookup (Joins)', 'topic'),
           createItem('mongodb aggregation pipeline tutorial', 'search', 'mongodb aggregation pipeline tutorial'),
         ]),
-        createDay(5, 'File Uploads', [
-          createItem('multipart/form-data', 'topic'),
-          createItem('Multer library', 'topic'),
-          createItem('saving files to disk', 'topic'),
-          createItem('multer nodejs file upload tutorial', 'search', 'multer nodejs file upload tutorial'),
+        createDay(5, 'Testing with MongoDB', [
+          createItem('mongodb-memory-server Setup', 'topic'),
+          createItem('Test Database Configuration', 'topic'),
+          createItem('beforeEach/afterEach Cleanup', 'topic'),
+          createItem('Seeding Test Data', 'topic'),
+          createItem('mongodb memory server jest', 'search', 'mongodb memory server jest'),
+          createItem('testing mongodb nodejs', 'search', 'testing mongodb nodejs'),
+          createItem('jest setup teardown mongodb', 'search', 'jest setup teardown mongodb'),
         ]),
         createDay(6, 'Project Integration', [
           createItem('Connecting Express API to MongoDB', 'project'),
@@ -299,10 +336,14 @@ export const roadmapData: Month[] = [
           createItem('decoding payloads', 'topic'),
           createItem('jwt authentication nodejs explained', 'search', 'jwt authentication nodejs explained'),
         ]),
-        createDay(3, 'Auth Middleware', [
+        createDay(3, 'Auth Middleware & Testing', [
           createItem('Protecting routes', 'topic'),
           createItem('extracting tokens from Headers', 'topic'),
+          createItem('Testing Auth Routes', 'topic'),
+          createItem('Mocking JWT', 'topic'),
           createItem('express js route protection jwt', 'search', 'express js route protection jwt'),
+          createItem('testing jwt authentication jest', 'search', 'testing jwt authentication jest'),
+          createItem('mocking jwt token tests', 'search', 'mocking jwt token tests'),
         ]),
         createDay(4, 'Refresh Tokens', [
           createItem('Short-lived access tokens vs Long-lived refresh tokens', 'topic'),
@@ -313,35 +354,72 @@ export const roadmapData: Month[] = [
           createItem('checking roles in middleware', 'topic'),
           createItem('rbac nodejs express tutorial', 'search', 'rbac nodejs express tutorial'),
         ]),
-        createDay(6, 'Auth Project', [
-          createItem('Building a Login/Register system with Roles', 'project'),
+        createDay(6, 'Rate Limiting & DDoS Protection', [
+          createItem('express-rate-limit Library', 'topic'),
+          createItem('Window Types (Fixed vs Sliding)', 'topic'),
+          createItem('IP-based Limiting', 'topic'),
+          createItem('Preventing Brute Force', 'topic'),
+          createItem('express rate limiting tutorial', 'search', 'express rate limiting tutorial'),
+          createItem('prevent brute force attacks nodejs', 'search', 'prevent brute force attacks nodejs'),
+          createItem('sliding window rate limit', 'search', 'sliding window rate limit'),
         ]),
         createDay(7, 'Review & Rest', []),
       ]),
-      createWeek(4, 'Reality Check (Assignments)', [
-        createDay(1, 'Logic Assignment (Inventory)', [
-          createItem('Stock management logic', 'assignment'),
-          createItem('Transaction concepts (mock)', 'assignment'),
-          createItem('inventory management system database design', 'search', 'inventory management system database design'),
+      createWeek(4, 'API Design & Documentation', [
+        createDay(1, 'RESTful API Best Practices', [
+          createItem('Resource Naming Conventions', 'topic'),
+          createItem('HTTP Verbs (GET/POST/PUT/PATCH/DELETE)', 'topic'),
+          createItem('Idempotency', 'topic'),
+          createItem('API Versioning (URL vs Header)', 'topic'),
+          createItem('rest api design best practices 2026', 'search', 'rest api design best practices 2026'),
+          createItem('api versioning strategies', 'search', 'api versioning strategies'),
+          createItem('http idempotency explained', 'search', 'http idempotency explained'),
         ]),
-        createDay(2, 'Logic Assignment (Inventory)', [
-          createItem('Stock management logic', 'assignment'),
-          createItem('Transaction concepts (mock)', 'assignment'),
+        createDay(2, 'Pagination & Filtering', [
+          createItem('Limit/Offset Pagination', 'topic'),
+          createItem('Cursor-based Pagination', 'topic'),
+          createItem('Query Parameters', 'topic'),
+          createItem('Sorting', 'topic'),
+          createItem('Field Selection', 'topic'),
+          createItem('api pagination best practices', 'search', 'api pagination best practices'),
+          createItem('cursor based pagination mongodb', 'search', 'cursor based pagination mongodb'),
+          createItem('rest api filtering sorting', 'search', 'rest api filtering sorting'),
         ]),
-        createDay(3, 'Security Assignment (Dashboard)', [
-          createItem('Securing Admin routes', 'assignment'),
-          createItem('Helmet.js for headers', 'assignment'),
-          createItem('securing express apps with helmet', 'search', 'securing express apps with helmet'),
+        createDay(3, 'API Documentation - Swagger', [
+          createItem('OpenAPI Specification', 'topic'),
+          createItem('Swagger UI Setup', 'topic'),
+          createItem('JSDoc Annotations', 'topic'),
+          createItem('Request/Response Examples', 'topic'),
+          createItem('swagger nodejs express tutorial', 'search', 'swagger nodejs express tutorial'),
+          createItem('openapi 3.0 specification', 'search', 'openapi 3.0 specification'),
+          createItem('swagger jsdoc annotations', 'search', 'swagger jsdoc annotations'),
         ]),
-        createDay(4, 'Security Assignment (Dashboard)', [
-          createItem('Securing Admin routes', 'assignment'),
-          createItem('Helmet.js for headers', 'assignment'),
+        createDay(4, 'Standardized Error Responses', [
+          createItem('Global Error Handler Middleware', 'topic'),
+          createItem('Error Response Format (RFC 7807)', 'topic'),
+          createItem('HTTP Status Code Selection', 'topic'),
+          createItem('Winston/Pino Logging', 'topic'),
+          createItem('express global error handler', 'search', 'express global error handler'),
+          createItem('nodejs error logging winston', 'search', 'nodejs error logging winston'),
+          createItem('rfc 7807 problem details', 'search', 'rfc 7807 problem details'),
         ]),
-        createDay(5, 'Refactor to TS', [
-          createItem('Converting JS Express app to strict TypeScript', 'project'),
+        createDay(5, 'Integration Testing', [
+          createItem('End-to-End API Tests', 'topic'),
+          createItem('Test Suites', 'topic'),
+          createItem('Test Coverage Reports (Istanbul/c8)', 'topic'),
+          createItem('CI Integration', 'topic'),
+          createItem('integration testing nodejs', 'search', 'integration testing nodejs'),
+          createItem('jest coverage report', 'search', 'jest coverage report'),
+          createItem('e2e api testing supertest', 'search', 'e2e api testing supertest'),
         ]),
-        createDay(6, 'Catch up / Buffer', []),
-        createDay(7, 'Catch up / Buffer', []),
+        createDay(6, 'Tested Blog API Project', [
+          createItem('Build Complete CRUD API with Auth', 'project'),
+          createItem('Full Test Coverage (Unit + Integration)', 'project'),
+          createItem('Swagger Docs', 'project'),
+          createItem('nodejs blog api with tests', 'search', 'nodejs blog api with tests'),
+          createItem('express crud api testing example', 'search', 'express crud api testing example'),
+        ]),
+        createDay(7, 'Review & Rest', []),
       ]),
     ],
   },
@@ -368,12 +446,17 @@ export const roadmapData: Month[] = [
           createItem('reducing redundancy', 'topic'),
           createItem('database normalization 1nf 2nf 3nf', 'search', 'database normalization 1nf 2nf 3nf'),
         ]),
-        createDay(3, 'Basic SQL', [
+        createDay(3, 'Basic SQL & Indexing', [
           createItem('SELECT statements', 'topic'),
           createItem('INSERT statements', 'topic'),
           createItem('UPDATE statements', 'topic'),
           createItem('DELETE statements', 'topic'),
+          createItem('Creating Indexes', 'topic'),
+          createItem('B-tree Indexes', 'topic'),
+          createItem('When to Index', 'topic'),
           createItem('postgresql sql queries tutorial', 'search', 'postgresql sql queries tutorial'),
+          createItem('postgresql indexing explained', 'search', 'postgresql indexing explained'),
+          createItem('database index performance', 'search', 'database index performance'),
         ]),
         createDay(4, 'Joins', [
           createItem('INNER JOIN', 'topic'),
@@ -381,12 +464,16 @@ export const roadmapData: Month[] = [
           createItem('RIGHT JOIN', 'topic'),
           createItem('postgresql joins visual explanation', 'search', 'postgresql joins visual explanation'),
         ]),
-        createDay(5, 'Transactions', [
+        createDay(5, 'Transactions & Connection Pooling', [
           createItem('ACID properties', 'topic'),
           createItem('BEGIN', 'topic'),
           createItem('COMMIT', 'topic'),
           createItem('ROLLBACK', 'topic'),
+          createItem('Connection Pooling', 'topic'),
+          createItem('Pool Size Configuration', 'topic'),
           createItem('acid transactions sql explained', 'search', 'acid transactions sql explained'),
+          createItem('postgresql connection pooling', 'search', 'postgresql connection pooling'),
+          createItem('pg pool configuration', 'search', 'pg pool configuration'),
         ]),
         createDay(6, 'DB Setup', [
           createItem('Setting up Postgres locally or on Neon/Supabase', 'project'),
@@ -411,18 +498,27 @@ export const roadmapData: Month[] = [
           createItem('Many-to-Many syntax', 'topic'),
           createItem('prisma schema relations', 'search', 'prisma schema relations'),
         ]),
-        createDay(4, 'CRUD with Prisma', [
+        createDay(4, 'CRUD with Prisma & Optimization', [
           createItem('findMany', 'topic'),
           createItem('create', 'topic'),
           createItem('update', 'topic'),
           createItem('delete', 'topic'),
+          createItem('Query Optimization', 'topic'),
+          createItem('Select Fields', 'topic'),
+          createItem('Includes', 'topic'),
           createItem('prisma client crud operations', 'search', 'prisma client crud operations'),
+          createItem('prisma query optimization', 'search', 'prisma query optimization'),
+          createItem('prisma select include', 'search', 'prisma select include'),
         ]),
-        createDay(5, 'Filtering & Sorting', [
+        createDay(5, 'Filtering, Sorting & Transactions', [
           createItem('Where clauses', 'topic'),
           createItem('Ordering', 'topic'),
           createItem('Pagination', 'topic'),
+          createItem('Prisma Transactions', 'topic'),
+          createItem('Interactive Transactions', 'topic'),
           createItem('prisma filtering and sorting', 'search', 'prisma filtering and sorting'),
+          createItem('prisma transactions tutorial', 'search', 'prisma transactions tutorial'),
+          createItem('prisma interactive transactions', 'search', 'prisma interactive transactions'),
         ]),
         createDay(6, 'Project Practice', [
           createItem('Building a University Schema (Students/Courses)', 'project'),
@@ -450,11 +546,15 @@ export const roadmapData: Month[] = [
           createItem('Creating route.ts (GET/POST) for external APIs', 'topic'),
           createItem('nextjs api routes tutorial', 'search', 'nextjs api routes tutorial'),
         ]),
-        createDay(5, 'Data Fetching', [
+        createDay(5, 'Data Fetching & Rendering Strategies', [
           createItem('Caching', 'topic'),
           createItem('Revalidating data', 'topic'),
           createItem('fetch API extensions', 'topic'),
+          createItem('ISR (Incremental Static Regeneration)', 'topic'),
+          createItem('SSG vs SSR', 'topic'),
           createItem('nextjs data fetching server side', 'search', 'nextjs data fetching server side'),
+          createItem('nextjs isr explained', 'search', 'nextjs isr explained'),
+          createItem('nextjs ssg vs ssr', 'search', 'nextjs ssg vs ssr'),
         ]),
         createDay(6, 'Blog Project', [
           createItem('Building a Blog with Next.js + Prisma', 'project'),
@@ -466,20 +566,34 @@ export const roadmapData: Month[] = [
           createItem('Separating Business Logic from Controllers', 'topic'),
           createItem('nodejs service controller pattern', 'search', 'nodejs service controller pattern'),
         ]),
-        createDay(2, 'Zod Validation', [
-          createItem('Schema validation for inputs/environment variables', 'topic'),
+        createDay(2, 'Zod Validation & Environment Variables', [
+          createItem('Schema validation for inputs', 'topic'),
+          createItem('Environment Variables Validation', 'topic'),
+          createItem('.env.local vs .env.production', 'topic'),
+          createItem('Type-safe Env', 'topic'),
           createItem('zod validation tutorial', 'search', 'zod validation tutorial'),
+          createItem('nextjs environment variables', 'search', 'nextjs environment variables'),
+          createItem('zod environment validation', 'search', 'zod environment validation'),
         ]),
-        createDay(3, 'Error Handling', [
+        createDay(3, 'Error Handling & Logging', [
           createItem('error.tsx in Next.js', 'topic'),
           createItem('Custom Error classes', 'topic'),
+          createItem('Winston/Pino Logging', 'topic'),
+          createItem('Log Levels', 'topic'),
+          createItem('Structured Logging', 'topic'),
           createItem('nextjs error handling best practices', 'search', 'nextjs error handling best practices'),
+          createItem('winston logger nodejs', 'search', 'winston logger nodejs'),
+          createItem('pino logging tutorial', 'search', 'pino logging tutorial'),
         ]),
-        createDay(4, 'Linting', [
+        createDay(4, 'Linting & Pre-commit Hooks', [
           createItem('ESLint', 'topic'),
           createItem('Prettier setup', 'topic'),
-          createItem('Husky hooks', 'topic'),
+          createItem('Husky Pre-commit Hooks', 'topic'),
+          createItem('lint-staged', 'topic'),
+          createItem('Commit Message Linting', 'topic'),
           createItem('eslint prettier setup nextjs', 'search', 'eslint prettier setup nextjs'),
+          createItem('husky pre commit hooks', 'search', 'husky pre commit hooks'),
+          createItem('lint staged tutorial', 'search', 'lint staged tutorial'),
         ]),
         createDay(5, 'Refactoring', [
           createItem('Cleaning up code', 'topic'),
@@ -540,9 +654,15 @@ export const roadmapData: Month[] = [
           createItem('Image Upload to Cloudinary', 'topic'),
           createItem('nextjs cloudinary upload widget tutorial', 'search', 'nextjs cloudinary upload widget tutorial'),
         ]),
-        createDay(2, 'DB Schema & Images', [
+        createDay(2, 'Services & Image Optimization', [
           createItem('DB Schema for Services', 'topic'),
           createItem('Image Upload to Cloudinary', 'topic'),
+          createItem('Image Optimization', 'topic'),
+          createItem('Next.js Image Component', 'topic'),
+          createItem('Cloudinary Transformations', 'topic'),
+          createItem('nextjs cloudinary upload widget tutorial', 'search', 'nextjs cloudinary upload widget tutorial'),
+          createItem('nextjs image optimization', 'search', 'nextjs image optimization'),
+          createItem('cloudinary transformations', 'search', 'cloudinary transformations'),
         ]),
         createDay(3, 'DB Schema & Images', [
           createItem('DB Schema for Services', 'topic'),
@@ -574,10 +694,13 @@ export const roadmapData: Month[] = [
           createItem('Transactions', 'topic'),
           createItem('Vendor Dashboard', 'topic'),
         ]),
-        createDay(3, 'Booking System', [
+        createDay(3, 'Booking Logic & Testing', [
           createItem('Relational Schema (User-Booking-Service)', 'topic'),
           createItem('Transactions', 'topic'),
           createItem('Vendor Dashboard', 'topic'),
+          createItem('Testing Booking Logic', 'topic'),
+          createItem('prisma transaction booking system', 'search', 'prisma transaction booking system'),
+          createItem('testing booking system nodejs', 'search', 'testing booking system nodejs'),
         ]),
         createDay(4, 'Booking System', [
           createItem('Relational Schema (User-Booking-Service)', 'topic'),
@@ -597,31 +720,46 @@ export const roadmapData: Month[] = [
         createDay(7, 'Review & Rest', []),
       ]),
       createWeek(4, 'Deploy & Docs', [
-        createDay(1, 'Deployment', [
+        createDay(1, 'Deploy & CI/CD Pipeline', [
           createItem('Deploying to Vercel + Neon', 'project'),
-          createItem('writing README.md', 'project'),
+          createItem('GitHub Actions CI/CD', 'topic'),
+          createItem('Automated Testing', 'topic'),
+          createItem('Build Checks', 'topic'),
+          createItem('Deploy Previews', 'topic'),
           createItem('deploy nextjs prisma vercel', 'search', 'deploy nextjs prisma vercel'),
+          createItem('github actions nextjs deployment', 'search', 'github actions nextjs deployment'),
+          createItem('ci cd pipeline nodejs', 'search', 'ci cd pipeline nodejs'),
         ]),
-        createDay(2, 'Deployment', [
+        createDay(2, 'Monitoring & Error Tracking', [
+          createItem('Sentry Setup', 'topic'),
+          createItem('Error Reporting', 'topic'),
+          createItem('Source Maps', 'topic'),
+          createItem('Performance Monitoring', 'topic'),
+          createItem('User Feedback Integration', 'topic'),
+          createItem('sentry nextjs integration', 'search', 'sentry nextjs integration'),
+          createItem('error tracking nodejs', 'search', 'error tracking nodejs'),
+          createItem('sentry performance monitoring', 'search', 'sentry performance monitoring'),
+        ]),
+        createDay(3, 'Deploy & CI/CD Pipeline', [
           createItem('Deploying to Vercel + Neon', 'project'),
-          createItem('writing README.md', 'project'),
+          createItem('GitHub Actions CI/CD', 'topic'),
+          createItem('Automated Testing', 'topic'),
+          createItem('Build Checks', 'topic'),
+          createItem('Deploy Previews', 'topic'),
         ]),
-        createDay(3, 'Deployment', [
-          createItem('Deploying to Vercel + Neon', 'project'),
-          createItem('writing README.md', 'project'),
+        createDay(4, 'Monitoring & Error Tracking', [
+          createItem('Sentry Setup', 'topic'),
+          createItem('Error Reporting', 'topic'),
+          createItem('Source Maps', 'topic'),
+          createItem('Performance Monitoring', 'topic'),
+          createItem('User Feedback Integration', 'topic'),
         ]),
-        createDay(4, 'Deployment', [
-          createItem('Deploying to Vercel + Neon', 'project'),
-          createItem('writing README.md', 'project'),
+        createDay(5, 'Documentation & Final Polish', [
+          createItem('Writing README.md', 'project'),
+          createItem('API Documentation', 'project'),
+          createItem('Code Review & Refactoring', 'project'),
         ]),
-        createDay(5, 'Deployment', [
-          createItem('Deploying to Vercel + Neon', 'project'),
-          createItem('writing README.md', 'project'),
-        ]),
-        createDay(6, 'Deployment', [
-          createItem('Deploying to Vercel + Neon', 'project'),
-          createItem('writing README.md', 'project'),
-        ]),
+        createDay(6, 'Catch up / Buffer', []),
         createDay(7, 'Review & Rest', []),
       ]),
     ],
@@ -708,59 +846,99 @@ export const roadmapData: Month[] = [
         createDay(7, 'Review & Rest', []),
       ]),
       createWeek(3, 'Payments & Testing', [
-        createDay(1, 'Payments & Testing', [
-          createItem('SSLCommerz/Stripe Integration', 'topic'),
-          createItem('Jest Unit Tests', 'topic'),
-          createItem('sslcommerz nodejs integration tutorial', 'search', 'sslcommerz nodejs integration tutorial'),
-          createItem('jest unit testing nodejs', 'search', 'jest unit testing nodejs'),
+        createDay(1, 'Testing Strategies & TDD', [
+          createItem('Test-Driven Development (TDD) Approach', 'topic'),
+          createItem('Unit vs Integration vs E2E Tests', 'topic'),
+          createItem('Test Pyramid', 'topic'),
+          createItem('Mocking Strategies', 'topic'),
+          createItem('tdd nodejs tutorial', 'search', 'tdd nodejs tutorial'),
+          createItem('testing pyramid explained', 'search', 'testing pyramid explained'),
+          createItem('jest mocking strategies', 'search', 'jest mocking strategies'),
         ]),
-        createDay(2, 'Payments & Testing', [
-          createItem('SSLCommerz/Stripe Integration', 'topic'),
-          createItem('Jest Unit Tests', 'topic'),
+        createDay(2, 'Testing Strategies & TDD', [
+          createItem('Test-Driven Development (TDD) Approach', 'topic'),
+          createItem('Unit vs Integration vs E2E Tests', 'topic'),
+          createItem('Test Pyramid', 'topic'),
+          createItem('Mocking Strategies', 'topic'),
         ]),
-        createDay(3, 'Payments & Testing', [
+        createDay(3, 'Payments Integration & Testing', [
           createItem('SSLCommerz/Stripe Integration', 'topic'),
-          createItem('Jest Unit Tests', 'topic'),
+          createItem('Webhook Handling', 'topic'),
+          createItem('Testing Payment Flows', 'topic'),
+          createItem('Mocking Payment APIs', 'topic'),
+          createItem('sslcommerz nodejs integration', 'search', 'sslcommerz nodejs integration'),
+          createItem('stripe webhook testing', 'search', 'stripe webhook testing'),
+          createItem('mocking payment apis jest', 'search', 'mocking payment apis jest'),
         ]),
-        createDay(4, 'Payments & Testing', [
+        createDay(4, 'Payments Integration & Testing', [
           createItem('SSLCommerz/Stripe Integration', 'topic'),
-          createItem('Jest Unit Tests', 'topic'),
+          createItem('Webhook Handling', 'topic'),
+          createItem('Testing Payment Flows', 'topic'),
+          createItem('Mocking Payment APIs', 'topic'),
         ]),
-        createDay(5, 'Payments & Testing', [
+        createDay(5, 'Payments Integration & Testing', [
           createItem('SSLCommerz/Stripe Integration', 'topic'),
-          createItem('Jest Unit Tests', 'topic'),
+          createItem('Webhook Handling', 'topic'),
+          createItem('Testing Payment Flows', 'topic'),
+          createItem('Mocking Payment APIs', 'topic'),
         ]),
-        createDay(6, 'Payments & Testing', [
+        createDay(6, 'Payments Integration & Testing', [
           createItem('SSLCommerz/Stripe Integration', 'topic'),
-          createItem('Jest Unit Tests', 'topic'),
+          createItem('Webhook Handling', 'topic'),
+          createItem('Testing Payment Flows', 'topic'),
+          createItem('Mocking Payment APIs', 'topic'),
         ]),
         createDay(7, 'Review & Rest', []),
       ]),
       createWeek(4, 'Docker', [
-        createDay(1, 'Docker Setup', [
+        createDay(1, 'Docker Basics & Networking', [
           createItem('Dockerfile creation', 'topic'),
-          createItem('Docker Compose services (App+Redis+DB)', 'topic'),
-          createItem('docker compose nodejs redis postgres tutorial', 'search', 'docker compose nodejs redis postgres tutorial'),
+          createItem('Docker Networking', 'topic'),
+          createItem('Bridge vs Host Network', 'topic'),
+          createItem('Container Communication', 'topic'),
+          createItem('docker compose nodejs redis postgres', 'search', 'docker compose nodejs redis postgres'),
+          createItem('docker networking tutorial', 'search', 'docker networking tutorial'),
+          createItem('docker container communication', 'search', 'docker container communication'),
         ]),
-        createDay(2, 'Docker Setup', [
-          createItem('Dockerfile creation', 'topic'),
-          createItem('Docker Compose services (App+Redis+DB)', 'topic'),
+        createDay(2, 'Docker Multi-stage Builds', [
+          createItem('Multi-stage Dockerfile', 'topic'),
+          createItem('Optimizing Image Size', 'topic'),
+          createItem('Build vs Production Stages', 'topic'),
+          createItem('Layer Caching', 'topic'),
+          createItem('docker multi stage builds nodejs', 'search', 'docker multi stage builds nodejs'),
+          createItem('optimize docker image size', 'search', 'optimize docker image size'),
+          createItem('docker layer caching', 'search', 'docker layer caching'),
         ]),
-        createDay(3, 'Docker Setup', [
-          createItem('Dockerfile creation', 'topic'),
-          createItem('Docker Compose services (App+Redis+DB)', 'topic'),
+        createDay(3, 'Kubernetes Basics', [
+          createItem('K8s Architecture', 'topic'),
+          createItem('Pods', 'topic'),
+          createItem('Deployments', 'topic'),
+          createItem('Services', 'topic'),
+          createItem('ConfigMaps', 'topic'),
+          createItem('Basic kubectl Commands', 'topic'),
+          createItem('kubernetes basics tutorial', 'search', 'kubernetes basics tutorial'),
+          createItem('kubernetes nodejs deployment', 'search', 'kubernetes nodejs deployment'),
+          createItem('kubectl commands cheat sheet', 'search', 'kubectl commands cheat sheet'),
         ]),
-        createDay(4, 'Docker Setup', [
-          createItem('Dockerfile creation', 'topic'),
-          createItem('Docker Compose services (App+Redis+DB)', 'topic'),
+        createDay(4, 'Kubernetes Basics', [
+          createItem('K8s Architecture', 'topic'),
+          createItem('Pods', 'topic'),
+          createItem('Deployments', 'topic'),
+          createItem('Services', 'topic'),
+          createItem('ConfigMaps', 'topic'),
+          createItem('Basic kubectl Commands', 'topic'),
         ]),
-        createDay(5, 'Docker Setup', [
-          createItem('Dockerfile creation', 'topic'),
-          createItem('Docker Compose services (App+Redis+DB)', 'topic'),
+        createDay(5, 'Kubernetes Basics', [
+          createItem('K8s Architecture', 'topic'),
+          createItem('Pods', 'topic'),
+          createItem('Deployments', 'topic'),
+          createItem('Services', 'topic'),
+          createItem('ConfigMaps', 'topic'),
+          createItem('Basic kubectl Commands', 'topic'),
         ]),
-        createDay(6, 'Docker Setup', [
-          createItem('Dockerfile creation', 'topic'),
-          createItem('Docker Compose services (App+Redis+DB)', 'topic'),
+        createDay(6, 'Docker Compose & K8s Practice', [
+          createItem('Docker Compose services (App+Redis+DB)', 'project'),
+          createItem('Kubernetes Deployment Practice', 'project'),
         ]),
         createDay(7, 'Review & Rest', []),
       ]),
@@ -774,59 +952,88 @@ export const roadmapData: Month[] = [
     completed: false,
     weeks: [
       createWeek(1, 'Linux & NGINX', [
-        createDay(1, 'Linux & NGINX', [
-          createItem('Linux CLI (ssh, grep)', 'topic'),
-          createItem('NGINX Configuration (Reverse Proxy)', 'topic'),
-          createItem('nginx reverse proxy nodejs tutorial', 'search', 'nginx reverse proxy nodejs tutorial'),
+        createDay(1, 'Linux & SSH Management', [
+          createItem('Linux CLI (ssh, grep, ps, top)', 'topic'),
+          createItem('SSH Key Authentication', 'topic'),
+          createItem('File Permissions', 'topic'),
+          createItem('Process Management', 'topic'),
           createItem('linux basics for developers', 'search', 'linux basics for developers'),
+          createItem('ssh key authentication tutorial', 'search', 'ssh key authentication tutorial'),
+          createItem('linux file permissions', 'search', 'linux file permissions'),
         ]),
-        createDay(2, 'Linux & NGINX', [
-          createItem('Linux CLI (ssh, grep)', 'topic'),
-          createItem('NGINX Configuration (Reverse Proxy)', 'topic'),
+        createDay(2, 'NGINX & Process Managers', [
+          createItem('NGINX Configuration (Reverse Proxy, Load Balancing)', 'topic'),
+          createItem('PM2 Process Manager', 'topic'),
+          createItem('Cluster Mode', 'topic'),
+          createItem('Auto-restart', 'topic'),
+          createItem('nginx reverse proxy nodejs tutorial', 'search', 'nginx reverse proxy nodejs tutorial'),
+          createItem('pm2 process manager', 'search', 'pm2 process manager'),
+          createItem('pm2 cluster mode', 'search', 'pm2 cluster mode'),
         ]),
-        createDay(3, 'Linux & NGINX', [
-          createItem('Linux CLI (ssh, grep)', 'topic'),
-          createItem('NGINX Configuration (Reverse Proxy)', 'topic'),
+        createDay(3, 'Environment Management', [
+          createItem('Managing .env across Servers', 'topic'),
+          createItem('Secrets Management', 'topic'),
+          createItem('dotenv-vault', 'topic'),
+          createItem('AWS Parameter Store/Secrets Manager', 'topic'),
+          createItem('nodejs environment variables production', 'search', 'nodejs environment variables production'),
+          createItem('secrets management nodejs', 'search', 'secrets management nodejs'),
+          createItem('dotenv vault tutorial', 'search', 'dotenv vault tutorial'),
         ]),
-        createDay(4, 'Linux & NGINX', [
-          createItem('Linux CLI (ssh, grep)', 'topic'),
-          createItem('NGINX Configuration (Reverse Proxy)', 'topic'),
+        createDay(4, 'NGINX & Process Managers', [
+          createItem('NGINX Configuration (Reverse Proxy, Load Balancing)', 'topic'),
+          createItem('PM2 Process Manager', 'topic'),
+          createItem('Cluster Mode', 'topic'),
+          createItem('Auto-restart', 'topic'),
         ]),
-        createDay(5, 'Linux & NGINX', [
-          createItem('Linux CLI (ssh, grep)', 'topic'),
-          createItem('NGINX Configuration (Reverse Proxy)', 'topic'),
+        createDay(5, 'Environment Management', [
+          createItem('Managing .env across Servers', 'topic'),
+          createItem('Secrets Management', 'topic'),
+          createItem('dotenv-vault', 'topic'),
+          createItem('AWS Parameter Store/Secrets Manager', 'topic'),
         ]),
-        createDay(6, 'Linux & NGINX', [
-          createItem('Linux CLI (ssh, grep)', 'topic'),
-          createItem('NGINX Configuration (Reverse Proxy)', 'topic'),
-        ]),
+        createDay(6, 'Review & Rest', []),
         createDay(7, 'Review & Rest', []),
       ]),
-      createWeek(2, 'Documentation', [
-        createDay(1, 'Documentation', [
+      createWeek(2, 'Monitoring & Documentation', [
+        createDay(1, 'Monitoring & Alerting', [
+          createItem('Sentry Error Tracking', 'topic'),
+          createItem('LogRocket Session Replay', 'topic'),
+          createItem('Setting Up Alerts', 'topic'),
+          createItem('Slack/Email Notifications', 'topic'),
+          createItem('sentry nodejs integration', 'search', 'sentry nodejs integration'),
+          createItem('logrocket setup', 'search', 'logrocket setup'),
+          createItem('nodejs monitoring alerts', 'search', 'nodejs monitoring alerts'),
+        ]),
+        createDay(2, 'Performance Monitoring', [
+          createItem('New Relic/Datadog APM', 'topic'),
+          createItem('Response Time Tracking', 'topic'),
+          createItem('Database Query Performance', 'topic'),
+          createItem('Memory Leaks', 'topic'),
+          createItem('nodejs performance monitoring', 'search', 'nodejs performance monitoring'),
+          createItem('apm tools comparison', 'search', 'apm tools comparison'),
+          createItem('nodejs memory leak detection', 'search', 'nodejs memory leak detection'),
+        ]),
+        createDay(3, 'Swagger Documentation', [
           createItem('Swagger/OpenAPI setup', 'topic'),
-          createItem('System Architecture Diagrams', 'topic'),
+          createItem('System Architecture Diagrams (Draw.io, Excalidraw)', 'topic'),
           createItem('swagger nodejs express tutorial', 'search', 'swagger nodejs express tutorial'),
+          createItem('system architecture diagram tools', 'search', 'system architecture diagram tools'),
         ]),
-        createDay(2, 'Documentation', [
-          createItem('Swagger/OpenAPI setup', 'topic'),
-          createItem('System Architecture Diagrams', 'topic'),
+        createDay(4, 'Monitoring & Alerting', [
+          createItem('Sentry Error Tracking', 'topic'),
+          createItem('LogRocket Session Replay', 'topic'),
+          createItem('Setting Up Alerts', 'topic'),
+          createItem('Slack/Email Notifications', 'topic'),
         ]),
-        createDay(3, 'Documentation', [
-          createItem('Swagger/OpenAPI setup', 'topic'),
-          createItem('System Architecture Diagrams', 'topic'),
+        createDay(5, 'Performance Monitoring', [
+          createItem('New Relic/Datadog APM', 'topic'),
+          createItem('Response Time Tracking', 'topic'),
+          createItem('Database Query Performance', 'topic'),
+          createItem('Memory Leaks', 'topic'),
         ]),
-        createDay(4, 'Documentation', [
+        createDay(6, 'Swagger Documentation', [
           createItem('Swagger/OpenAPI setup', 'topic'),
-          createItem('System Architecture Diagrams', 'topic'),
-        ]),
-        createDay(5, 'Documentation', [
-          createItem('Swagger/OpenAPI setup', 'topic'),
-          createItem('System Architecture Diagrams', 'topic'),
-        ]),
-        createDay(6, 'Documentation', [
-          createItem('Swagger/OpenAPI setup', 'topic'),
-          createItem('System Architecture Diagrams', 'topic'),
+          createItem('System Architecture Diagrams (Draw.io, Excalidraw)', 'topic'),
         ]),
         createDay(7, 'Review & Rest', []),
       ]),
@@ -837,30 +1044,41 @@ export const roadmapData: Month[] = [
           createItem('CAP Theorem', 'topic'),
           createItem('system design primer for beginners', 'search', 'system design primer for beginners'),
         ]),
-        createDay(2, 'System Design', [
+        createDay(2, 'Database Optimization & Sharding', [
           createItem('Vertical/Horizontal Scaling', 'topic'),
+          createItem('Database Sharding', 'topic'),
+          createItem('Read Replicas', 'topic'),
           createItem('Load Balancers', 'topic'),
-          createItem('CAP Theorem', 'topic'),
+          createItem('database sharding explained', 'search', 'database sharding explained'),
+          createItem('postgresql read replicas', 'search', 'postgresql read replicas'),
+          createItem('horizontal vs vertical scaling', 'search', 'horizontal vs vertical scaling'),
         ]),
-        createDay(3, 'System Design', [
-          createItem('Vertical/Horizontal Scaling', 'topic'),
-          createItem('Load Balancers', 'topic'),
+        createDay(3, 'Caching Strategies & Message Queues', [
           createItem('CAP Theorem', 'topic'),
+          createItem('Redis Caching Patterns (Cache-aside, Write-through)', 'topic'),
+          createItem('Message Queues (Bull, RabbitMQ Basics)', 'topic'),
+          createItem('redis caching strategies', 'search', 'redis caching strategies'),
+          createItem('bull queue nodejs', 'search', 'bull queue nodejs'),
+          createItem('rabbitmq nodejs tutorial', 'search', 'rabbitmq nodejs tutorial'),
         ]),
-        createDay(4, 'System Design', [
-          createItem('Vertical/Horizontal Scaling', 'topic'),
-          createItem('Load Balancers', 'topic'),
-          createItem('CAP Theorem', 'topic'),
+        createDay(4, 'System Design Patterns', [
+          createItem('Microservices vs Monolith', 'topic'),
+          createItem('API Gateway Pattern', 'topic'),
+          createItem('Circuit Breaker', 'topic'),
+          createItem('Event-Driven Architecture', 'topic'),
+          createItem('system design patterns backend', 'search', 'system design patterns backend'),
+          createItem('api gateway pattern', 'search', 'api gateway pattern'),
+          createItem('circuit breaker nodejs', 'search', 'circuit breaker nodejs'),
         ]),
-        createDay(5, 'System Design', [
-          createItem('Vertical/Horizontal Scaling', 'topic'),
-          createItem('Load Balancers', 'topic'),
-          createItem('CAP Theorem', 'topic'),
+        createDay(5, 'System Design Patterns', [
+          createItem('Microservices vs Monolith', 'topic'),
+          createItem('API Gateway Pattern', 'topic'),
+          createItem('Circuit Breaker', 'topic'),
+          createItem('Event-Driven Architecture', 'topic'),
         ]),
-        createDay(6, 'System Design', [
-          createItem('Vertical/Horizontal Scaling', 'topic'),
-          createItem('Load Balancers', 'topic'),
-          createItem('CAP Theorem', 'topic'),
+        createDay(6, 'System Design Practice', [
+          createItem('Design a Scalable System', 'practice'),
+          createItem('Architecture Diagrams', 'practice'),
         ]),
         createDay(7, 'Review & Rest', []),
       ]),
