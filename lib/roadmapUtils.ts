@@ -1,8 +1,62 @@
-import { RoadmapData, Month, Week, Day, LearningItem, RoadmapProgress } from './roadmapTypes';
+import { RoadmapData, Month, Week, Day, LearningItem, RoadmapProgress, PendingItem } from './roadmapTypes';
 import { roadmapData } from './roadmapData';
 
 const STORAGE_KEY = 'backend-roadmap-progress';
 const START_DATE_KEY = 'roadmap-start-date';
+const PENDING_STORAGE_KEY = 'roadmap-pending-items';
+const ROADMAP_START_DATE = '2026-01-01'; // Fixed start date
+
+// Calculate which day of the roadmap we're on (0-indexed)
+function getCurrentRoadmapDay(): number {
+  const startDate = new Date(ROADMAP_START_DATE);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  startDate.setHours(0, 0, 0, 0);
+  
+  const diffTime = today.getTime() - startDate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  
+  return Math.max(0, diffDays); // Don't go negative
+}
+
+// Calculate current month, week, day based on actual date
+function calculateCurrentPosition(): { month: number; week: number; day: number } {
+  const roadmapDay = getCurrentRoadmapDay();
+  let dayCount = 0;
+  
+  for (let monthIdx = 0; monthIdx < roadmapData.length; monthIdx++) {
+    const month = roadmapData[monthIdx];
+    for (let weekIdx = 0; weekIdx < month.weeks.length; weekIdx++) {
+      const week = month.weeks[weekIdx];
+      for (let dayIdx = 0; dayIdx < week.days.length; dayIdx++) {
+        if (dayCount === roadmapDay) {
+          return {
+            month: monthIdx + 1,
+            week: weekIdx + 1,
+            day: dayIdx + 1,
+          };
+        }
+        dayCount++;
+      }
+    }
+  }
+  
+  // If we've passed all days, return the last day
+  const lastMonth = roadmapData[roadmapData.length - 1];
+  const lastWeek = lastMonth.weeks[lastMonth.weeks.length - 1];
+  return {
+    month: roadmapData.length,
+    week: lastMonth.weeks.length,
+    day: lastWeek.days.length,
+  };
+}
+
+// Get date string for a specific roadmap day
+function getDateForRoadmapDay(dayNumber: number): string {
+  const startDate = new Date(ROADMAP_START_DATE);
+  startDate.setDate(startDate.getDate() + dayNumber);
+  return startDate.toISOString().split('T')[0];
+}
 
 // Initialize roadmap with progress tracking
 export function initializeRoadmap(): RoadmapData {
@@ -25,9 +79,7 @@ export function initializeRoadmap(): RoadmapData {
 }
 
 function getDefaultRoadmap(): RoadmapData {
-  const startDate = typeof window !== 'undefined' 
-    ? (localStorage.getItem(START_DATE_KEY) || new Date().toISOString().split('T')[0])
-    : new Date().toISOString().split('T')[0];
+  const startDate = ROADMAP_START_DATE;
 
   if (typeof window !== 'undefined') {
     localStorage.setItem(START_DATE_KEY, startDate);
@@ -94,7 +146,7 @@ function mergeProgressWithRoadmap(
   return {
     months: mergedMonths,
     progress: { ...progress, ...storedProgress },
-    startDate: startDate || new Date().toISOString().split('T')[0],
+    startDate: startDate || ROADMAP_START_DATE,
   };
 }
 
@@ -102,36 +154,23 @@ function calculateProgress(months: Month[]): RoadmapProgress {
   let totalItems = 0;
   let completedItems = 0;
   let completedMonths = 0;
-  let currentMonth = 1;
-  let currentWeek = 1;
-  let currentDay = 1;
+  
+  const currentPos = calculateCurrentPosition();
+  const currentMonth = currentPos.month;
+  const currentWeek = currentPos.week;
+  const currentDay = currentPos.day;
 
-  months.forEach((month, monthIdx) => {
+  months.forEach((month) => {
     if (month.completed) {
       completedMonths++;
     }
 
-    let monthHasIncomplete = false;
-    month.weeks.forEach((week, weekIdx) => {
-      week.days.forEach((day, dayIdx) => {
+    month.weeks.forEach((week) => {
+      week.days.forEach((day) => {
         day.items.forEach(item => {
           totalItems++;
           if (item.completed) {
             completedItems++;
-          } else if (!monthHasIncomplete) {
-            monthHasIncomplete = true;
-            if (currentMonth === monthIdx + 1) {
-              if (currentWeek === weekIdx + 1) {
-                currentDay = dayIdx + 1;
-              } else if (currentWeek < weekIdx + 1) {
-                currentWeek = weekIdx + 1;
-                currentDay = dayIdx + 1;
-              }
-            } else if (currentMonth < monthIdx + 1) {
-              currentMonth = monthIdx + 1;
-              currentWeek = weekIdx + 1;
-              currentDay = dayIdx + 1;
-            }
           }
         });
       });
@@ -139,6 +178,7 @@ function calculateProgress(months: Month[]): RoadmapProgress {
   });
 
   const overallProgress = totalItems > 0 ? (completedItems / totalItems) * 100 : 0;
+  const pendingCount = getPendingItems(months).length;
 
   return {
     currentMonth,
@@ -149,6 +189,7 @@ function calculateProgress(months: Month[]): RoadmapProgress {
     totalMonths: months.length,
     completedMonths,
     overallProgress: Math.round(overallProgress * 100) / 100,
+    pendingCount,
     dailyProgress: typeof window !== 'undefined' ? getDailyProgress() : [],
   };
 }
@@ -164,6 +205,72 @@ function getDailyProgress(): { date: string; itemsCompleted: number }[] {
   }
 }
 
+// Get pending items (items from past days that aren't completed)
+export function getPendingItems(months: Month[]): PendingItem[] {
+  const pendingItems: PendingItem[] = [];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const currentRoadmapDay = getCurrentRoadmapDay();
+  
+  let dayCount = 0;
+  
+  months.forEach((month) => {
+    month.weeks.forEach((week) => {
+      week.days.forEach((day) => {
+        // Only check days that have passed
+        if (dayCount < currentRoadmapDay) {
+          const assignedDate = getDateForRoadmapDay(dayCount);
+          const assignedDateObj = new Date(assignedDate);
+          const daysMissed = Math.floor((today.getTime() - assignedDateObj.getTime()) / (1000 * 60 * 60 * 24));
+          
+          day.items.forEach((item) => {
+            if (!item.completed) {
+              pendingItems.push({
+                id: `pending-${item.id}-${dayCount}`,
+                itemId: item.id,
+                title: item.title,
+                type: item.type,
+                assignedDate,
+                daysMissed,
+                monthId: month.id,
+                weekId: week.id,
+                dayId: day.id,
+                searchKeyword: item.searchKeyword,
+              });
+            }
+          });
+        }
+        dayCount++;
+      });
+    });
+  });
+  
+  return pendingItems;
+}
+
+// Load pending items from storage
+export function loadPendingItems(): PendingItem[] {
+  if (typeof window === 'undefined') return [];
+  
+  try {
+    const stored = localStorage.getItem(PENDING_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
+
+// Save pending items to storage
+export function savePendingItems(items: PendingItem[]): void {
+  if (typeof window === 'undefined') return;
+  
+  try {
+    localStorage.setItem(PENDING_STORAGE_KEY, JSON.stringify(items));
+  } catch (error) {
+    console.error('Failed to save pending items:', error);
+  }
+}
+
 // Save roadmap progress
 export function saveRoadmap(roadmap: RoadmapData): void {
   if (typeof window === 'undefined') return;
@@ -171,6 +278,9 @@ export function saveRoadmap(roadmap: RoadmapData): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(roadmap));
     localStorage.setItem(START_DATE_KEY, roadmap.startDate);
+    // Update pending items
+    const pendingItems = getPendingItems(roadmap.months);
+    savePendingItems(pendingItems);
   } catch (error) {
     console.error('Failed to save roadmap:', error);
   }

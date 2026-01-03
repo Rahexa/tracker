@@ -38,6 +38,19 @@ export interface Month {
   completedAt?: string;
 }
 
+export interface PendingItem {
+  id: string;
+  itemId: string;
+  title: string;
+  type: LearningItem['type'];
+  assignedDate: string; // The date this item was supposed to be completed
+  daysMissed: number;
+  monthId: string;
+  weekId: string;
+  dayId: string;
+  searchKeyword?: string;
+}
+
 export interface RoadmapProgress {
   currentMonth: number;
   currentWeek: number;
@@ -47,6 +60,7 @@ export interface RoadmapProgress {
   totalMonths: number;
   completedMonths: number;
   overallProgress: number;
+  pendingCount: number;
   dailyProgress: {
     date: string;
     itemsCompleted: number;

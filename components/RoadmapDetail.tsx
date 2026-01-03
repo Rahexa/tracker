@@ -90,17 +90,17 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
   const getItemColor = (type: LearningItem['type']) => {
     switch (type) {
       case 'topic':
-        return 'text-blue-600 bg-blue-100 border-blue-300';
+        return 'text-blue-400 bg-blue-900/30 border-blue-700';
       case 'search':
-        return 'text-red-600 bg-red-100 border-red-300';
+        return 'text-red-400 bg-red-900/30 border-red-700';
       case 'practice':
-        return 'text-green-600 bg-green-100 border-green-300';
+        return 'text-green-400 bg-green-900/30 border-green-700';
       case 'project':
-        return 'text-purple-600 bg-purple-100 border-purple-300';
+        return 'text-purple-400 bg-purple-900/30 border-purple-700';
       case 'assignment':
-        return 'text-orange-600 bg-orange-100 border-orange-300';
+        return 'text-orange-400 bg-orange-900/30 border-orange-700';
       default:
-        return 'text-gray-600 bg-gray-100 border-gray-300';
+        return 'text-gray-400 bg-gray-900/30 border-gray-700';
     }
   };
 
@@ -121,14 +121,14 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
         return (
           <div
             key={month.id}
-            className={`bg-white rounded-lg border-2 transition-all ${
-              isCurrentMonth ? 'border-blue-500 shadow-lg' : 'border-gray-200'
+            className={`bg-slate-700 rounded-lg border-2 transition-all ${
+              isCurrentMonth ? 'border-blue-500 shadow-lg' : 'border-slate-600'
             }`}
           >
             {/* Month Header */}
             <button
               onClick={() => toggleMonth(month.id)}
-              className="w-full p-4 flex items-center justify-between hover:bg-gray-50 rounded-t-lg transition-colors"
+              className="w-full p-4 flex items-center justify-between hover:bg-slate-600 rounded-t-lg transition-colors"
             >
               <div className="flex items-center gap-3 flex-1 text-left">
                 {isExpanded ? (
@@ -138,8 +138,8 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
                 )}
                 <div className="flex-1">
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-semibold text-gray-500">Month {month.monthNumber}</span>
-                    <h3 className="text-lg font-bold text-gray-900">{month.title}</h3>
+                    <span className="text-sm font-semibold text-gray-400">Month {month.monthNumber}</span>
+                    <h3 className="text-lg font-bold text-gray-100">{month.title}</h3>
                     {isCurrentMonth && (
                       <span className="px-2 py-0.5 bg-blue-500 text-white text-xs rounded-full">Current</span>
                     )}
@@ -147,8 +147,8 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
                       <span className="px-2 py-0.5 bg-green-500 text-white text-xs rounded-full">✓ Done</span>
                     )}
                   </div>
-                  <p className="text-sm text-gray-600 mt-1">{month.goal}</p>
-                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                  <p className="text-sm text-gray-300 mt-1">{month.goal}</p>
+                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-400">
                     <span>{monthCompleted}/{monthItems} items</span>
                     <span>{Math.round((monthCompleted / monthItems) * 100)}% complete</span>
                   </div>
@@ -158,7 +158,7 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
 
             {/* Month Content */}
             {isExpanded && (
-              <div className="border-t border-gray-200 p-4 space-y-3">
+              <div className="border-t border-slate-600 p-4 space-y-3">
                 {month.weeks.map((week) => {
                   const isWeekExpanded = expandedWeeks.has(week.id);
                   const weekCompleted = week.days.reduce((acc, day) => 
@@ -167,20 +167,20 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
                   const weekTotal = week.days.reduce((acc, day) => acc + day.items.length, 0);
 
                   return (
-                    <div key={week.id} className="bg-gray-50 rounded-lg border border-gray-200">
+                    <div key={week.id} className="bg-slate-800 rounded-lg border border-slate-600">
                       {/* Week Header */}
                       <button
                         onClick={() => toggleWeek(week.id)}
-                        className="w-full p-3 flex items-center justify-between hover:bg-gray-100 rounded-t-lg transition-colors"
+                        className="w-full p-3 flex items-center justify-between hover:bg-slate-700 rounded-t-lg transition-colors"
                       >
                         <div className="flex items-center gap-2 flex-1 text-left">
                           {isWeekExpanded ? (
-                            <ChevronDown className="w-4 h-4 text-gray-500" />
+                            <ChevronDown className="w-4 h-4 text-gray-400" />
                           ) : (
-                            <ChevronRight className="w-4 h-4 text-gray-500" />
+                            <ChevronRight className="w-4 h-4 text-gray-400" />
                           )}
-                          <span className="font-semibold text-gray-700">Week {week.weekNumber}: {week.title}</span>
-                          <span className="text-sm text-gray-500">
+                          <span className="font-semibold text-gray-200">Week {week.weekNumber}: {week.title}</span>
+                          <span className="text-sm text-gray-400">
                             ({weekCompleted}/{weekTotal})
                           </span>
                           {week.completed && (
@@ -191,27 +191,27 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
 
                       {/* Week Days */}
                       {isWeekExpanded && (
-                        <div className="p-3 space-y-2 border-t border-gray-200">
+                        <div className="p-3 space-y-2 border-t border-slate-600">
                           {week.days.map((day) => {
                             const isDayExpanded = expandedDays.has(day.id);
                             const dayCompleted = day.items.filter(item => item.completed).length;
                             const dayTotal = day.items.length;
 
                             return (
-                              <div key={day.id} className="bg-white rounded-lg border border-gray-200">
+                              <div key={day.id} className="bg-slate-700 rounded-lg border border-slate-600">
                                 {/* Day Header */}
                                 <button
                                   onClick={() => toggleDay(day.id)}
-                                  className="w-full p-2 flex items-center justify-between hover:bg-gray-50 rounded-t-lg transition-colors"
+                                  className="w-full p-2 flex items-center justify-between hover:bg-slate-600 rounded-t-lg transition-colors"
                                 >
                                   <div className="flex items-center gap-2 flex-1 text-left">
                                     {isDayExpanded ? (
-                                      <ChevronDown className="w-3 h-3 text-gray-500" />
+                                      <ChevronDown className="w-3 h-3 text-gray-400" />
                                     ) : (
-                                      <ChevronRight className="w-3 h-3 text-gray-500" />
+                                      <ChevronRight className="w-3 h-3 text-gray-400" />
                                     )}
-                                    <span className="text-sm font-medium text-gray-700">Day {day.dayNumber}: {day.title}</span>
-                                    <span className="text-xs text-gray-500">
+                                    <span className="text-sm font-medium text-gray-200">Day {day.dayNumber}: {day.title}</span>
+                                    <span className="text-xs text-gray-400">
                                       ({dayCompleted}/{dayTotal})
                                     </span>
                                     {day.completed && dayTotal > 0 && (
@@ -222,9 +222,9 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
 
                                 {/* Day Items */}
                                 {isDayExpanded && (
-                                  <div className="p-2 space-y-2 border-t border-gray-200">
+                                  <div className="p-2 space-y-2 border-t border-slate-600">
                                     {day.items.length === 0 ? (
-                                      <p className="text-sm text-gray-500 text-center py-2">Rest day - no items</p>
+                                      <p className="text-sm text-gray-400 text-center py-2">Rest day - no items</p>
                                     ) : (
                                       day.items.map((item) => {
                                         const Icon = getItemIcon(item.type);
@@ -236,8 +236,8 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
                                             key={item.id}
                                             className={`p-3 rounded-lg border-2 transition-all ${
                                               item.completed
-                                                ? 'bg-green-50 border-green-300 opacity-75'
-                                                : `bg-white ${colorClass}`
+                                                ? 'bg-green-900/30 border-green-700 opacity-75'
+                                                : `bg-slate-800 ${colorClass}`
                                             }`}
                                           >
                                             <div className="flex items-start gap-3">
@@ -246,7 +246,7 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
                                                 className={`mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
                                                   item.completed
                                                     ? 'bg-green-500 border-green-500 text-white'
-                                                    : 'border-gray-300 hover:border-green-500'
+                                                    : 'border-gray-500 hover:border-green-500'
                                                 }`}
                                               >
                                                 {item.completed && <CheckCircle2 className="w-4 h-4" />}
@@ -260,7 +260,7 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
                                                     </div>
                                                     <h4
                                                       className={`font-medium ${
-                                                        item.completed ? 'line-through text-gray-500' : 'text-gray-900'
+                                                        item.completed ? 'line-through text-gray-500' : 'text-gray-200'
                                                       }`}
                                                     >
                                                       {item.title}
@@ -270,7 +270,7 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
                                                         href={`https://www.youtube.com/results?search_query=${encodeURIComponent(item.searchKeyword)}`}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-gray-400 hover:text-gray-600"
+                                                        className="text-gray-400 hover:text-gray-200"
                                                         onClick={(e) => e.stopPropagation()}
                                                       >
                                                         <ExternalLink className="w-4 h-4" />
@@ -283,17 +283,17 @@ export default function RoadmapDetail({ roadmap, onRoadmapUpdate }: RoadmapDetai
                                                   <div className="mt-2 flex items-center gap-2">
                                                     <button
                                                       onClick={() => handlePracticeUpdate(month.id, week.id, day.id, item.id, false)}
-                                                      className="p-1 rounded hover:bg-gray-200 transition-colors"
+                                                      className="p-1 rounded hover:bg-slate-700 transition-colors text-gray-300"
                                                       disabled={!item.currentCount || item.currentCount === 0}
                                                     >
                                                       <Minus className="w-4 h-4" />
                                                     </button>
-                                                    <span className="text-sm font-semibold text-gray-700">
+                                                    <span className="text-sm font-semibold text-gray-300">
                                                       {item.currentCount || 0} / {item.count}
                                                     </span>
                                                     <button
                                                       onClick={() => handlePracticeUpdate(month.id, week.id, day.id, item.id, true)}
-                                                      className="p-1 rounded hover:bg-gray-200 transition-colors"
+                                                      className="p-1 rounded hover:bg-slate-700 transition-colors text-gray-300"
                                                       disabled={item.completed}
                                                     >
                                                       <Plus className="w-4 h-4" />

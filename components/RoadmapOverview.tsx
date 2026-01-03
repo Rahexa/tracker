@@ -28,17 +28,17 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
   const daysRemaining = Math.max(0, expectedDays - daysElapsed);
 
   const typeStats = [
-    { label: 'Topics', value: `${stats.topics.completed}/${stats.topics.total}`, icon: BookOpen, color: 'text-blue-600 bg-blue-100' },
-    { label: 'Search Keywords', value: `${stats.search.completed}/${stats.search.total}`, icon: Search, color: 'text-red-600 bg-red-100' },
-    { label: 'Practice Problems', value: `${stats.practice.completed}/${stats.practice.total}`, icon: Code, color: 'text-green-600 bg-green-100' },
-    { label: 'Projects', value: `${stats.projects.completed}/${stats.projects.total}`, icon: Briefcase, color: 'text-purple-600 bg-purple-100' },
-    { label: 'Assignments', value: `${stats.assignments.completed}/${stats.assignments.total}`, icon: FileText, color: 'text-orange-600 bg-orange-100' },
+    { label: 'Topics', value: `${stats.topics.completed}/${stats.topics.total}`, icon: BookOpen, color: 'text-blue-400 bg-blue-900/30 border-blue-700' },
+    { label: 'Search Keywords', value: `${stats.search.completed}/${stats.search.total}`, icon: Search, color: 'text-red-400 bg-red-900/30 border-red-700' },
+    { label: 'Practice Problems', value: `${stats.practice.completed}/${stats.practice.total}`, icon: Code, color: 'text-green-400 bg-green-900/30 border-green-700' },
+    { label: 'Projects', value: `${stats.projects.completed}/${stats.projects.total}`, icon: Briefcase, color: 'text-purple-400 bg-purple-900/30 border-purple-700' },
+    { label: 'Assignments', value: `${stats.assignments.completed}/${stats.assignments.total}`, icon: FileText, color: 'text-orange-400 bg-orange-900/30 border-orange-700' },
   ];
 
   return (
     <div className="space-y-6">
       {/* Main Progress Card */}
-      <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-6 text-white shadow-xl">
+      <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white shadow-xl">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-2xl font-bold mb-1">6-Month Backend Roadmap</h2>
@@ -82,6 +82,19 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
         </div>
       </div>
 
+      {/* Pending Alert */}
+      {progress.pendingCount > 0 && (
+        <div className="bg-red-900/30 border-2 border-red-700 rounded-lg p-4 flex items-center gap-3">
+          <div className="p-2 bg-red-900/50 rounded-lg">
+            <Target className="w-6 h-6 text-red-400" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-bold text-red-300">You have {progress.pendingCount} pending item{progress.pendingCount !== 1 ? 's' : ''}</h3>
+            <p className="text-sm text-red-400">Complete items from past days to stay on track</p>
+          </div>
+        </div>
+      )}
+
       {/* Type Statistics */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {typeStats.map((stat, index) => {
@@ -92,16 +105,16 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
           const percentage = totalNum > 0 ? (completedNum / totalNum) * 100 : 0;
 
           return (
-            <div key={index} className="bg-white rounded-lg border-2 border-gray-200 p-4">
-              <div className={`p-2 rounded-lg ${stat.color} w-fit mb-3`}>
+            <div key={index} className="bg-slate-700 rounded-lg border-2 border-slate-600 p-4">
+              <div className={`p-2 rounded-lg ${stat.color.split(' ')[0]} ${stat.color.split(' ')[1]} w-fit mb-3`}>
                 <Icon className="w-5 h-5" />
               </div>
-              <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-              <div className="text-sm text-gray-600 mb-2">{stat.label}</div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="text-2xl font-bold text-gray-100">{stat.value}</div>
+              <div className="text-sm text-gray-400 mb-2">{stat.label}</div>
+              <div className="w-full bg-slate-600 rounded-full h-2">
                 <div
                   className={`h-2 rounded-full transition-all duration-500 ${
-                    stat.color.split(' ')[0].replace('text-', 'bg-')
+                    stat.color.split(' ')[0].replace('text-', 'bg-').replace('-400', '-500')
                   }`}
                   style={{ width: `${percentage}%` }}
                 />
@@ -112,8 +125,8 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
       </div>
 
       {/* Month Progress */}
-      <div className="bg-white rounded-lg border-2 border-gray-200 p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-slate-700 rounded-lg border-2 border-slate-600 p-6">
+        <h3 className="text-xl font-bold text-gray-100 mb-4 flex items-center gap-2">
           <Target className="w-6 h-6" />
           Monthly Progress
         </h3>
@@ -135,16 +148,16 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
                 key={month.id}
                 className={`p-4 rounded-lg border-2 transition-all ${
                   isCurrentMonth
-                    ? 'border-blue-500 bg-blue-50'
+                    ? 'border-blue-500 bg-blue-900/20'
                     : month.completed
-                    ? 'border-green-300 bg-green-50'
-                    : 'border-gray-200 bg-gray-50'
+                    ? 'border-green-500 bg-green-900/20'
+                    : 'border-slate-600 bg-slate-800'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-semibold text-gray-500">Month {month.monthNumber}</span>
-                    <h4 className="font-bold text-gray-900">{month.title}</h4>
+                    <span className="text-sm font-semibold text-gray-400">Month {month.monthNumber}</span>
+                    <h4 className="font-bold text-gray-100">{month.title}</h4>
                     {isCurrentMonth && (
                       <span className="px-2 py-0.5 bg-blue-500 text-white text-xs rounded-full">Current</span>
                     )}
@@ -152,14 +165,14 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
                       <span className="px-2 py-0.5 bg-green-500 text-white text-xs rounded-full">Completed</span>
                     )}
                   </div>
-                  <span className="text-sm font-semibold text-gray-700">
+                  <span className="text-sm font-semibold text-gray-300">
                     {monthCompleted}/{monthItems}
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="w-full bg-slate-600 rounded-full h-2">
                   <div
                     className={`h-2 rounded-full transition-all duration-500 ${
-                      month.completed ? 'bg-green-500' : isCurrentMonth ? 'bg-blue-500' : 'bg-gray-400'
+                      month.completed ? 'bg-green-500' : isCurrentMonth ? 'bg-blue-500' : 'bg-slate-500'
                     }`}
                     style={{ width: `${monthPercentage}%` }}
                   />
@@ -172,4 +185,3 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
     </div>
   );
 }
-
