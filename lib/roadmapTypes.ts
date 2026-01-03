@@ -1,20 +1,29 @@
 export interface LearningItem {
   id: string;
   title: string;
-  type: 'topic' | 'youtube' | 'practice' | 'project' | 'assignment';
+  type: 'topic' | 'search' | 'practice' | 'project' | 'assignment';
   completed: boolean;
   completedAt?: string;
   notes?: string;
-  url?: string; // For YouTube videos
+  searchKeyword?: string; // Search keyword instead of URL
   count?: number; // For practice problems (e.g., "Solve 10 problems")
   currentCount?: number; // Current progress on count-based items
+}
+
+export interface Day {
+  id: string;
+  dayNumber: number;
+  title: string;
+  items: LearningItem[];
+  completed: boolean;
+  completedAt?: string;
 }
 
 export interface Week {
   id: string;
   weekNumber: number;
   title: string;
-  items: LearningItem[];
+  days: Day[];
   completed: boolean;
   completedAt?: string;
 }
@@ -32,6 +41,7 @@ export interface Month {
 export interface RoadmapProgress {
   currentMonth: number;
   currentWeek: number;
+  currentDay: number;
   totalItems: number;
   completedItems: number;
   totalMonths: number;
@@ -48,4 +58,3 @@ export interface RoadmapData {
   progress: RoadmapProgress;
   startDate: string; // When they started the roadmap
 }
-

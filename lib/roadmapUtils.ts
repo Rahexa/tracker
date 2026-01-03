@@ -1,4 +1,4 @@
-import { RoadmapData, Month, Week, LearningItem, RoadmapProgress } from './roadmapTypes';
+import { RoadmapData, Month, Week, Day, LearningItem, RoadmapProgress } from './roadmapTypes';
 import { roadmapData } from './roadmapData';
 
 const STORAGE_KEY = 'backend-roadmap-progress';
@@ -51,8 +51,10 @@ function mergeProgressWithRoadmap(
   const storedItemsMap = new Map<string, LearningItem>();
   storedMonths.forEach(month => {
     month.weeks.forEach(week => {
-      week.items.forEach(item => {
-        storedItemsMap.set(item.id, item);
+      week.days.forEach(day => {
+        day.items.forEach(item => {
+          storedItemsMap.set(item.id, item);
+        });
       });
     });
   });
@@ -70,9 +72,17 @@ function mergeProgressWithRoadmap(
           ...week,
           completed: storedWeek?.completed || false,
           completedAt: storedWeek?.completedAt,
-          items: week.items.map(item => {
-            const storedItem = storedItemsMap.get(item.id);
-            return storedItem ? { ...item, ...storedItem } : item;
+          days: week.days.map(day => {
+            const storedDay = storedWeek?.days.find(d => d.id === day.id);
+            return {
+              ...day,
+              completed: storedDay?.completed || false,
+              completedAt: storedDay?.completedAt,
+              items: day.items.map(item => {
+                const storedItem = storedItemsMap.get(item.id);
+                return storedItem ? { ...item, ...storedItem } : item;
+              }),
+            };
           }),
         };
       }),
@@ -94,6 +104,7 @@ function calculateProgress(months: Month[]): RoadmapProgress {
   let completedMonths = 0;
   let currentMonth = 1;
   let currentWeek = 1;
+  let currentDay = 1;
 
   months.forEach((month, monthIdx) => {
     if (month.completed) {
@@ -102,19 +113,27 @@ function calculateProgress(months: Month[]): RoadmapProgress {
 
     let monthHasIncomplete = false;
     month.weeks.forEach((week, weekIdx) => {
-      week.items.forEach(item => {
-        totalItems++;
-        if (item.completed) {
-          completedItems++;
-        } else if (!monthHasIncomplete) {
-          monthHasIncomplete = true;
-          if (currentMonth === monthIdx + 1) {
-            currentWeek = weekIdx + 1;
-          } else if (currentMonth < monthIdx + 1) {
-            currentMonth = monthIdx + 1;
-            currentWeek = weekIdx + 1;
+      week.days.forEach((day, dayIdx) => {
+        day.items.forEach(item => {
+          totalItems++;
+          if (item.completed) {
+            completedItems++;
+          } else if (!monthHasIncomplete) {
+            monthHasIncomplete = true;
+            if (currentMonth === monthIdx + 1) {
+              if (currentWeek === weekIdx + 1) {
+                currentDay = dayIdx + 1;
+              } else if (currentWeek < weekIdx + 1) {
+                currentWeek = weekIdx + 1;
+                currentDay = dayIdx + 1;
+              }
+            } else if (currentMonth < monthIdx + 1) {
+              currentMonth = monthIdx + 1;
+              currentWeek = weekIdx + 1;
+              currentDay = dayIdx + 1;
+            }
           }
-        }
+        });
       });
     });
   });
@@ -124,6 +143,7 @@ function calculateProgress(months: Month[]): RoadmapProgress {
   return {
     currentMonth,
     currentWeek,
+    currentDay,
     totalItems,
     completedItems,
     totalMonths: months.length,
@@ -161,6 +181,7 @@ export function toggleItemCompletion(
   roadmap: RoadmapData,
   monthId: string,
   weekId: string,
+  dayId: string,
   itemId: string
 ): RoadmapData {
   const updatedMonths = roadmap.months.map(month => {
@@ -169,26 +190,41 @@ export function toggleItemCompletion(
     const updatedWeeks = month.weeks.map(week => {
       if (week.id !== weekId) return week;
 
-      const updatedItems = week.items.map(item => {
-        if (item.id !== itemId) return item;
+      const updatedDays = week.days.map(day => {
+        if (day.id !== dayId) return day;
 
-        const wasCompleted = item.completed;
-        const nowCompleted = !wasCompleted;
+        const updatedItems = day.items.map(item => {
+          if (item.id !== itemId) return item;
+
+          const wasCompleted = item.completed;
+          const nowCompleted = !wasCompleted;
+
+          return {
+            ...item,
+            completed: nowCompleted,
+            completedAt: nowCompleted ? new Date().toISOString() : undefined,
+          };
+        });
+
+        // Check if all items in day are completed
+        const allItemsCompleted = updatedItems.every(item => item.completed);
+        const dayCompleted = allItemsCompleted && updatedItems.length > 0;
 
         return {
-          ...item,
-          completed: nowCompleted,
-          completedAt: nowCompleted ? new Date().toISOString() : undefined,
+          ...day,
+          items: updatedItems,
+          completed: dayCompleted,
+          completedAt: dayCompleted ? new Date().toISOString() : undefined,
         };
       });
 
-      // Check if all items in week are completed
-      const allItemsCompleted = updatedItems.every(item => item.completed);
-      const weekCompleted = allItemsCompleted && updatedItems.length > 0;
+      // Check if all days in week are completed
+      const allDaysCompleted = updatedDays.every(day => day.completed);
+      const weekCompleted = allDaysCompleted && updatedDays.length > 0;
 
       return {
         ...week,
-        items: updatedItems,
+        days: updatedDays,
         completed: weekCompleted,
         completedAt: weekCompleted ? new Date().toISOString() : undefined,
       };
@@ -240,6 +276,7 @@ export function updatePracticeCount(
   roadmap: RoadmapData,
   monthId: string,
   weekId: string,
+  dayId: string,
   itemId: string,
   increment: boolean = true
 ): RoadmapData {
@@ -249,31 +286,45 @@ export function updatePracticeCount(
     const updatedWeeks = month.weeks.map(week => {
       if (week.id !== weekId) return week;
 
-      const updatedItems = week.items.map(item => {
-        if (item.id !== itemId) {
-          return item;
-        }
+      const updatedDays = week.days.map(day => {
+        if (day.id !== dayId) return day;
 
-        const currentCount = item.currentCount || 0;
-        const targetCount = item.count || 0;
-        const newCount = increment 
-          ? Math.min(currentCount + 1, targetCount)
-          : Math.max(currentCount - 1, 0);
+        const updatedItems = day.items.map(item => {
+          if (item.id !== itemId) {
+            return item;
+          }
+
+          const currentCount = item.currentCount || 0;
+          const targetCount = item.count || 0;
+          const newCount = increment 
+            ? Math.min(currentCount + 1, targetCount)
+            : Math.max(currentCount - 1, 0);
+
+          return {
+            ...item,
+            currentCount: newCount,
+            completed: newCount >= targetCount,
+            completedAt: newCount >= targetCount ? new Date().toISOString() : undefined,
+          };
+        });
+
+        const allItemsCompleted = updatedItems.every(item => item.completed);
+        const dayCompleted = allItemsCompleted && updatedItems.length > 0;
 
         return {
-          ...item,
-          currentCount: newCount,
-          completed: newCount >= targetCount,
-          completedAt: newCount >= targetCount ? new Date().toISOString() : undefined,
+          ...day,
+          items: updatedItems,
+          completed: dayCompleted,
+          completedAt: dayCompleted ? new Date().toISOString() : undefined,
         };
       });
 
-      const allItemsCompleted = updatedItems.every(item => item.completed);
-      const weekCompleted = allItemsCompleted && updatedItems.length > 0;
+      const allDaysCompleted = updatedDays.every(day => day.completed);
+      const weekCompleted = allDaysCompleted && updatedDays.length > 0;
 
       return {
         ...week,
-        items: updatedItems,
+        days: updatedDays,
         completed: weekCompleted,
         completedAt: weekCompleted ? new Date().toISOString() : undefined,
       };
@@ -302,20 +353,23 @@ export function updatePracticeCount(
   return updatedRoadmap;
 }
 
-// Get current week's items
-export function getCurrentWeekItems(roadmap: RoadmapData): LearningItem[] {
+// Get current day's items
+export function getCurrentDayItems(roadmap: RoadmapData): LearningItem[] {
   const currentMonth = roadmap.months.find(m => m.monthNumber === roadmap.progress.currentMonth);
   if (!currentMonth) return [];
 
   const currentWeek = currentMonth.weeks.find(w => w.weekNumber === roadmap.progress.currentWeek);
-  return currentWeek?.items || [];
+  if (!currentWeek) return [];
+
+  const currentDay = currentWeek.days.find(d => d.dayNumber === roadmap.progress.currentDay);
+  return currentDay?.items || [];
 }
 
 // Get statistics by type
 export function getStatsByType(roadmap: RoadmapData) {
   const stats = {
     topics: { total: 0, completed: 0 },
-    youtube: { total: 0, completed: 0 },
+    search: { total: 0, completed: 0 },
     practice: { total: 0, completed: 0 },
     projects: { total: 0, completed: 0 },
     assignments: { total: 0, completed: 0 },
@@ -323,20 +377,21 @@ export function getStatsByType(roadmap: RoadmapData) {
 
   roadmap.months.forEach(month => {
     month.weeks.forEach(week => {
-      week.items.forEach(item => {
-        const type = item.type === 'project' ? 'projects' : 
-                    item.type === 'youtube' ? 'youtube' :
-                    item.type === 'practice' ? 'practice' :
-                    item.type === 'assignment' ? 'assignments' : 'topics';
-        
-        stats[type].total++;
-        if (item.completed) {
-          stats[type].completed++;
-        }
+      week.days.forEach(day => {
+        day.items.forEach(item => {
+          const type = item.type === 'project' ? 'projects' : 
+                      item.type === 'search' ? 'search' :
+                      item.type === 'practice' ? 'practice' :
+                      item.type === 'assignment' ? 'assignments' : 'topics';
+          
+          stats[type].total++;
+          if (item.completed) {
+            stats[type].completed++;
+          }
+        });
       });
     });
   });
 
   return stats;
 }
-

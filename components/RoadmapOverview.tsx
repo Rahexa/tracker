@@ -1,7 +1,7 @@
 'use client';
 
 import { RoadmapData } from '@/lib/roadmapTypes';
-import { Calendar, Target, TrendingUp, BookOpen, Video, Code, Briefcase, FileText } from 'lucide-react';
+import { Calendar, Target, TrendingUp, BookOpen, Search, Code, Briefcase, FileText } from 'lucide-react';
 import { getStatsByType } from '@/lib/roadmapUtils';
 
 interface RoadmapOverviewProps {
@@ -29,7 +29,7 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
 
   const typeStats = [
     { label: 'Topics', value: `${stats.topics.completed}/${stats.topics.total}`, icon: BookOpen, color: 'text-blue-600 bg-blue-100' },
-    { label: 'YouTube Videos', value: `${stats.youtube.completed}/${stats.youtube.total}`, icon: Video, color: 'text-red-600 bg-red-100' },
+    { label: 'Search Keywords', value: `${stats.search.completed}/${stats.search.total}`, icon: Search, color: 'text-red-600 bg-red-100' },
     { label: 'Practice Problems', value: `${stats.practice.completed}/${stats.practice.total}`, icon: Code, color: 'text-green-600 bg-green-100' },
     { label: 'Projects', value: `${stats.projects.completed}/${stats.projects.total}`, icon: Briefcase, color: 'text-purple-600 bg-purple-100' },
     { label: 'Assignments', value: `${stats.assignments.completed}/${stats.assignments.total}`, icon: FileText, color: 'text-orange-600 bg-orange-100' },
@@ -119,10 +119,13 @@ export default function RoadmapOverview({ roadmap }: RoadmapOverviewProps) {
         </h3>
         <div className="space-y-3">
           {roadmap.months.map((month, index) => {
-            const monthItems = month.weeks.reduce((acc, week) => acc + week.items.length, 0);
+            const monthItems = month.weeks.reduce((acc, week) => 
+              acc + week.days.reduce((dayAcc, day) => dayAcc + day.items.length, 0), 0
+            );
             const monthCompleted = month.weeks.reduce(
-              (acc, week) => acc + week.items.filter(item => item.completed).length,
-              0
+              (acc, week) => acc + week.days.reduce((dayAcc, day) => 
+                dayAcc + day.items.filter(item => item.completed).length, 0
+              ), 0
             );
             const monthPercentage = monthItems > 0 ? (monthCompleted / monthItems) * 100 : 0;
             const isCurrentMonth = month.monthNumber === progress.currentMonth;

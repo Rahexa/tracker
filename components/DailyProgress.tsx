@@ -17,16 +17,18 @@ export default function DailyProgress({ roadmap }: DailyProgressProps) {
     .slice(-7)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  const getCurrentWeekItems = () => {
+  const getCurrentDayItems = () => {
     const currentMonth = roadmap.months.find(m => m.monthNumber === roadmap.progress.currentMonth);
     if (!currentMonth) return [];
     const currentWeek = currentMonth.weeks.find(w => w.weekNumber === roadmap.progress.currentWeek);
-    return currentWeek?.items || [];
+    if (!currentWeek) return [];
+    const currentDay = currentWeek.days.find(d => d.dayNumber === roadmap.progress.currentDay);
+    return currentDay?.items || [];
   };
 
-  const currentWeekItems = getCurrentWeekItems();
-  const currentWeekCompleted = currentWeekItems.filter(item => item.completed).length;
-  const currentWeekTotal = currentWeekItems.length;
+  const currentDayItems = getCurrentDayItems();
+  const currentDayCompleted = currentDayItems.filter(item => item.completed).length;
+  const currentDayTotal = currentDayItems.length;
 
   return (
     <div className="space-y-6">
@@ -41,8 +43,8 @@ export default function DailyProgress({ roadmap }: DailyProgressProps) {
             <div className="text-sm text-gray-600">Items Completed Today</div>
           </div>
           <div className="bg-green-50 rounded-lg p-4 border-2 border-green-200">
-            <div className="text-3xl font-bold text-green-600">{currentWeekCompleted}/{currentWeekTotal}</div>
-            <div className="text-sm text-gray-600">Current Week Progress</div>
+            <div className="text-3xl font-bold text-green-600">{currentDayCompleted}/{currentDayTotal}</div>
+            <div className="text-sm text-gray-600">Current Day Progress</div>
           </div>
           <div className="bg-purple-50 rounded-lg p-4 border-2 border-purple-200">
             <div className="text-3xl font-bold text-purple-600">{roadmap.progress.overallProgress.toFixed(1)}%</div>
@@ -86,14 +88,14 @@ export default function DailyProgress({ roadmap }: DailyProgressProps) {
         </div>
       )}
 
-      {currentWeekItems.length > 0 && (
+      {currentDayItems.length > 0 && (
         <div className="bg-white rounded-lg border-2 border-gray-200 p-6">
           <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
             <Target className="w-5 h-5" />
-            This Week's Focus
+            Today's Focus
           </h3>
           <div className="space-y-2">
-            {currentWeekItems.slice(0, 5).map((item) => (
+            {currentDayItems.slice(0, 5).map((item) => (
               <div
                 key={item.id}
                 className={`p-3 rounded-lg border-2 ${
@@ -114,9 +116,9 @@ export default function DailyProgress({ roadmap }: DailyProgressProps) {
                 </div>
               </div>
             ))}
-            {currentWeekItems.length > 5 && (
+            {currentDayItems.length > 5 && (
               <p className="text-sm text-gray-500 text-center mt-2">
-                +{currentWeekItems.length - 5} more items
+                +{currentDayItems.length - 5} more items
               </p>
             )}
           </div>
