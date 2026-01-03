@@ -1,55 +1,68 @@
-"use client";
+'use client';
 
-import { learningPlan } from "@/data/learningPlan";
-import { Month } from "@/data/learningPlan";
-import { loadProgress, saveProgress, toggleTask } from "@/lib/storage";
-import { useEffect, useState } from "react";
-import MonthCard from "@/components/MonthCard";
-import ProgressOverview from "@/components/ProgressOverview";
+import { useState, useEffect } from 'react';
+import DailyTasks from '@/components/DailyTasks';
+import PendingTasks from '@/components/PendingTasks';
+import { CheckCircle2, Clock } from 'lucide-react';
+import { getPendingTasks } from '@/lib/taskUtils';
 
 export default function Home() {
-  const [months, setMonths] = useState<Month[]>(learningPlan);
+  const [activeTab, setActiveTab] = useState<'daily' | 'pending'>('daily');
+  const [pendingCount, setPendingCount] = useState(0);
 
   useEffect(() => {
-    // Load saved progress on mount
-    const saved = loadProgress(learningPlan);
-    setMonths(saved);
+    const updatePendingCount = () => {
+      if (typeof window !== 'undefined') {
+        const pending = getPendingTasks().filter(t => !t.completed);
+        setPendingCount(pending.length);
+      }
+    };
+    
+    updatePendingCount();
+    const interval = setInterval(updatePendingCount, 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  const handleToggleTask = (
-    monthId: string,
-    weekId: string,
-    topicId: string,
-    taskId: string
-  ) => {
-    setMonths((current) => {
-      const updated = toggleTask(current, monthId, weekId, topicId, taskId);
-      saveProgress(updated);
-      return updated;
-    });
-  };
-
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <ProgressOverview months={months} />
-
-        <div className="space-y-6">
-          {months.map((month) => (
-            <MonthCard
-              key={month.id}
-              month={month}
-              onToggleTask={handleToggleTask}
-              allMonths={months}
-            />
-          ))}
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        {/* Tab Navigation */}
+        <div className="mb-8 bg-white rounded-lg p-1 shadow-lg border-2 border-gray-200 inline-flex">
+          <button
+            onClick={() => setActiveTab('daily')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-md font-medium transition-all ${
+              activeTab === 'daily'
+                ? 'bg-blue-500 text-white shadow-md'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
+          >
+            <CheckCircle2 className="w-5 h-5" />
+            Daily Tasks
+          </button>
+          <button
+            onClick={() => setActiveTab('pending')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-md font-medium transition-all ${
+              activeTab === 'pending'
+                ? 'bg-orange-500 text-white shadow-md'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
+          >
+            <Clock className="w-5 h-5" />
+            Pending
+            {pendingCount > 0 && (
+              <span className="ml-1 px-2 py-0.5 bg-white/20 rounded-full text-xs font-semibold">
+                {pendingCount}
+              </span>
+            )}
+          </button>
         </div>
 
-        <footer className="mt-12 text-center text-gray-600 dark:text-gray-400 text-sm">
-          <p className="mb-2">Track your progress and stay motivated! 🚀</p>
-          <p className="text-xs">Your progress is automatically saved in your browser.</p>
-        </footer>
+        {/* Content */}
+        <div className="bg-white rounded-xl shadow-xl p-6 border-2 border-gray-200">
+          {activeTab === 'daily' ? <DailyTasks /> : <PendingTasks />}
+        </div>
       </div>
     </main>
   );
 }
+
