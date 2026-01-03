@@ -19,9 +19,25 @@ function getCurrentRoadmapDay(): number {
   return Math.max(0, diffDays); // Don't go negative
 }
 
+// Calculate total days in roadmap
+function getTotalRoadmapDays(): number {
+  let totalDays = 0;
+  roadmapData.forEach(month => {
+    month.weeks.forEach(week => {
+      totalDays += week.days.length;
+    });
+  });
+  return totalDays;
+}
+
 // Calculate current month, week, day based on actual date
 function calculateCurrentPosition(): { month: number; week: number; day: number } {
   const roadmapDay = getCurrentRoadmapDay();
+  const totalDays = getTotalRoadmapDays();
+  
+  // Clamp to valid range
+  const dayToFind = Math.max(0, Math.min(roadmapDay, totalDays - 1));
+  
   let dayCount = 0;
   
   for (let monthIdx = 0; monthIdx < roadmapData.length; monthIdx++) {
@@ -29,7 +45,7 @@ function calculateCurrentPosition(): { month: number; week: number; day: number 
     for (let weekIdx = 0; weekIdx < month.weeks.length; weekIdx++) {
       const week = month.weeks[weekIdx];
       for (let dayIdx = 0; dayIdx < week.days.length; dayIdx++) {
-        if (dayCount === roadmapDay) {
+        if (dayCount === dayToFind) {
           return {
             month: monthIdx + 1,
             week: weekIdx + 1,
@@ -41,13 +57,11 @@ function calculateCurrentPosition(): { month: number; week: number; day: number 
     }
   }
   
-  // If we've passed all days, return the last day
-  const lastMonth = roadmapData[roadmapData.length - 1];
-  const lastWeek = lastMonth.weeks[lastMonth.weeks.length - 1];
+  // Fallback: return first day if something goes wrong
   return {
-    month: roadmapData.length,
-    week: lastMonth.weeks.length,
-    day: lastWeek.days.length,
+    month: 1,
+    week: 1,
+    day: 1,
   };
 }
 
@@ -143,9 +157,13 @@ function mergeProgressWithRoadmap(
 
   const progress = calculateProgress(mergedMonths);
   
+  // Merge daily progress from stored, but keep the newly calculated current position
   return {
     months: mergedMonths,
-    progress: { ...progress, ...storedProgress },
+    progress: { 
+      ...progress, 
+      dailyProgress: storedProgress?.dailyProgress || progress.dailyProgress 
+    },
     startDate: startDate || ROADMAP_START_DATE,
   };
 }
