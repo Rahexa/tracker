@@ -94,7 +94,12 @@ export const roadmapData: Month[] = [
           createItem('javascript custom error classes', 'search', 'javascript custom error classes'),
           createItem('error handling best practices javascript 2026', 'search', 'error handling best practices javascript 2026'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Build a Todo App: Use all JS concepts (variables, functions, async/await, error handling)', 'assignment'),
+          createItem('Implement custom error classes for different error types', 'assignment'),
+          createItem('Create a module system with ES6 imports/exports', 'assignment'),
+          createItem('Practice Git workflow: Create branches, commit, merge, handle conflicts', 'assignment'),
+        ]),
       ]),
       createWeek(2, 'JavaScript Runtime (The Engine)', [
         createDay(1, 'V8 Engine & Call Stack', [
@@ -132,7 +137,12 @@ export const roadmapData: Month[] = [
           createItem('Two Pointer technique', 'practice'),
           createItem('leetcode sliding window pattern javascript', 'search', 'leetcode sliding window pattern javascript'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Explain Event Loop with a diagram: Show macro vs micro tasks execution', 'assignment'),
+          createItem('Build a file processor using streams: Read large file, transform, write output', 'assignment'),
+          createItem('Create an HTTP client that handles different status codes with proper error messages', 'assignment'),
+          createItem('Solve 3 LeetCode problems using Sliding Window and Two Pointer patterns', 'assignment'),
+        ]),
       ]),
       createWeek(3, 'TypeScript (Strict Mode)', [
         createDay(1, 'TS Setup & Basic Types', [
@@ -172,7 +182,12 @@ export const roadmapData: Month[] = [
           createItem('Building a small Command Line Interface tool with TS', 'project'),
           createItem('build cli tool nodejs typescript', 'search', 'build cli tool nodejs typescript'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Refactor CLI tool: Add generics, utility types, and proper error handling', 'assignment'),
+          createItem('Build a type-safe API client using TypeScript interfaces and generics', 'assignment'),
+          createItem('Create a class hierarchy: Base class with inheritance and access modifiers', 'assignment'),
+          createItem('Convert a JavaScript project to TypeScript with strict mode enabled', 'assignment'),
+        ]),
       ]),
       createWeek(4, 'DSA for Backend', [
         createDay(1, 'Hash Maps', [
@@ -212,7 +227,13 @@ export const roadmapData: Month[] = [
           createItem('Searching', 'practice'),
           createItem('Duplicates', 'practice'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Solve 5 array problems using Hash Maps (frequency counting, duplicates)', 'assignment'),
+          createItem('Implement Stack and Queue data structures from scratch', 'assignment'),
+          createItem('Write recursive functions: Factorial, Fibonacci, Binary Search', 'assignment'),
+          createItem('Analyze time complexity of your solutions: Identify O(1), O(n), O(n²) patterns', 'assignment'),
+          createItem('Practice Git advanced: Create feature branch, rebase, cherry-pick commits', 'assignment'),
+        ]),
       ]),
     ],
   },
@@ -272,7 +293,12 @@ export const roadmapData: Month[] = [
           createItem('supertest express api testing', 'search', 'supertest express api testing'),
           createItem('testing express middleware jest', 'search', 'testing express middleware jest'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Build a File Management API: CRUD operations with file streams, validation, and tests', 'assignment'),
+          createItem('Write unit tests for all routes: Achieve 80%+ test coverage', 'assignment'),
+          createItem('Implement input validation: Use Zod for request validation, sanitize user inputs', 'assignment'),
+          createItem('Create middleware chain: Logging, error handling, validation, authentication', 'assignment'),
+        ]),
       ]),
       createWeek(2, 'MongoDB & Mongoose', [
         createDay(1, 'MongoDB Setup & Design Patterns', [
@@ -321,7 +347,12 @@ export const roadmapData: Month[] = [
         createDay(6, 'Project Integration', [
           createItem('Connecting Express API to MongoDB', 'project'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Design a MongoDB schema: Choose embedding vs referencing for relationships', 'assignment'),
+          createItem('Build aggregation pipeline: Group data, calculate statistics, join collections', 'assignment'),
+          createItem('Create indexes: Analyze query patterns and optimize with compound indexes', 'assignment'),
+          createItem('Write integration tests: Test MongoDB operations with mongodb-memory-server', 'assignment'),
+        ]),
       ]),
       createWeek(3, 'Auth & Security (JWT)', [
         createDay(1, 'Hashing', [
@@ -363,7 +394,12 @@ export const roadmapData: Month[] = [
           createItem('prevent brute force attacks nodejs', 'search', 'prevent brute force attacks nodejs'),
           createItem('sliding window rate limit', 'search', 'sliding window rate limit'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Build complete Auth System: Register, login, JWT tokens, protected routes, role-based access', 'assignment'),
+          createItem('Write tests for auth: Test password hashing, token generation, middleware protection', 'assignment'),
+          createItem('Implement rate limiting: Protect login endpoint from brute force attacks', 'assignment'),
+          createItem('Create refresh token flow: Short-lived access tokens with long-lived refresh tokens', 'assignment'),
+        ]),
       ]),
       createWeek(4, 'API Design & Documentation', [
         createDay(1, 'RESTful API Best Practices', [
@@ -419,7 +455,13 @@ export const roadmapData: Month[] = [
           createItem('nodejs blog api with tests', 'search', 'nodejs blog api with tests'),
           createItem('express crud api testing example', 'search', 'express crud api testing example'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Design RESTful API: Follow naming conventions, proper HTTP verbs, versioning strategy', 'assignment'),
+          createItem('Implement pagination: Both limit/offset and cursor-based pagination', 'assignment'),
+          createItem('Set up Swagger documentation: Document all endpoints with request/response examples', 'assignment'),
+          createItem('Create global error handler: Standardized error responses following RFC 7807', 'assignment'),
+          createItem('Write integration tests: Full E2E API tests with 90%+ coverage', 'assignment'),
+        ]),
       ]),
     ],
   },
@@ -478,7 +520,13 @@ export const roadmapData: Month[] = [
         createDay(6, 'DB Setup', [
           createItem('Setting up Postgres locally or on Neon/Supabase', 'project'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Design a normalized database schema: Create ER diagram, apply 1NF/2NF/3NF', 'assignment'),
+          createItem('Write complex SQL queries: Joins, subqueries, aggregations, window functions', 'assignment'),
+          createItem('Create indexes: Analyze query performance, create appropriate indexes', 'assignment'),
+          createItem('Practice transactions: Implement ACID operations with proper error handling', 'assignment'),
+          createItem('Set up connection pooling: Configure pool size, test concurrent connections', 'assignment'),
+        ]),
       ]),
       createWeek(2, 'Prisma ORM', [
         createDay(1, 'Prisma Model', [
@@ -523,7 +571,12 @@ export const roadmapData: Month[] = [
         createDay(6, 'Project Practice', [
           createItem('Building a University Schema (Students/Courses)', 'project'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Build Prisma schema: Define models, relations (1-1, 1-M, M-M), run migrations', 'assignment'),
+          createItem('Optimize Prisma queries: Use select, include, where clauses efficiently', 'assignment'),
+          createItem('Implement transactions: Use Prisma transactions for complex operations', 'assignment'),
+          createItem('Create a University System: Students, Courses, Enrollments with proper relations', 'assignment'),
+        ]),
       ]),
       createWeek(3, 'Next.js 15 Backend', [
         createDay(1, 'App Router', [
@@ -559,7 +612,12 @@ export const roadmapData: Month[] = [
         createDay(6, 'Blog Project', [
           createItem('Building a Blog with Next.js + Prisma', 'project'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Build a Blog with Next.js: Server Components, Server Actions, Route Handlers', 'assignment'),
+          createItem('Implement data fetching: Use caching, revalidation, ISR for optimal performance', 'assignment'),
+          createItem('Create API routes: Build RESTful endpoints using Next.js Route Handlers', 'assignment'),
+          createItem('Practice SSG vs SSR: Build pages using both strategies, compare performance', 'assignment'),
+        ]),
       ]),
       createWeek(4, 'Architecture & Quality', [
         createDay(1, 'Service Pattern', [
@@ -603,7 +661,13 @@ export const roadmapData: Month[] = [
           createItem('Cleaning up code', 'topic'),
           createItem('applying patterns', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Refactor codebase: Apply Service Pattern, separate business logic from controllers', 'assignment'),
+          createItem('Set up validation: Use Zod for inputs and environment variables validation', 'assignment'),
+          createItem('Implement error handling: Create custom error classes, use error.tsx in Next.js', 'assignment'),
+          createItem('Configure tooling: ESLint, Prettier, Husky pre-commit hooks, lint-staged', 'assignment'),
+          createItem('Set up logging: Winston/Pino with structured logging and log levels', 'assignment'),
+        ]),
       ]),
     ],
   },
@@ -646,7 +710,12 @@ export const roadmapData: Month[] = [
           createItem('ShadcnUI', 'topic'),
           createItem('NextAuth v5 Configuration (Providers, Callbacks)', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Complete Next.js project setup: Configure NextAuth v5 with multiple providers', 'assignment'),
+          createItem('Set up ShadcnUI: Install and configure components, create reusable UI library', 'assignment'),
+          createItem('Implement role-based authentication: Admin, Vendor, Customer roles with protected routes', 'assignment'),
+          createItem('Create project structure: Organize folders, set up TypeScript, configure environment variables', 'assignment'),
+        ]),
       ]),
       createWeek(2, 'Services & Images', [
         createDay(1, 'DB Schema & Images', [
@@ -680,7 +749,12 @@ export const roadmapData: Month[] = [
           createItem('DB Schema for Services', 'topic'),
           createItem('Image Upload to Cloudinary', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Design service schema: Create Prisma models for services with proper relations', 'assignment'),
+          createItem('Implement image upload: Cloudinary integration with upload widget and transformations', 'assignment'),
+          createItem('Optimize images: Use Next.js Image component with Cloudinary for responsive images', 'assignment'),
+          createItem('Build service CRUD: Create, read, update, delete services with image management', 'assignment'),
+        ]),
       ]),
       createWeek(3, 'Booking Logic', [
         createDay(1, 'Booking System', [
@@ -717,7 +791,12 @@ export const roadmapData: Month[] = [
           createItem('Transactions', 'topic'),
           createItem('Vendor Dashboard', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Build booking system: Implement booking flow with Prisma transactions', 'assignment'),
+          createItem('Create vendor dashboard: Display bookings, manage services, view analytics', 'assignment'),
+          createItem('Write tests: Unit and integration tests for booking logic with proper mocking', 'assignment'),
+          createItem('Handle edge cases: Double booking prevention, availability checks, cancellation logic', 'assignment'),
+        ]),
       ]),
       createWeek(4, 'Deploy & Docs', [
         createDay(1, 'Deploy & CI/CD Pipeline', [
@@ -760,7 +839,12 @@ export const roadmapData: Month[] = [
           createItem('Code Review & Refactoring', 'project'),
         ]),
         createDay(6, 'Catch up / Buffer', []),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Deploy to production: Set up Vercel + Neon, configure environment variables', 'assignment'),
+          createItem('Set up CI/CD: GitHub Actions with automated testing and deployment', 'assignment'),
+          createItem('Configure monitoring: Sentry error tracking, performance monitoring, alerts', 'assignment'),
+          createItem('Write documentation: README, API docs, deployment guide, architecture diagrams', 'assignment'),
+        ]),
       ]),
     ],
   },
@@ -809,7 +893,12 @@ export const roadmapData: Month[] = [
           createItem('Expiration', 'topic'),
           createItem('Caching API responses', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Set up Redis: Install and configure Redis, test SET/GET operations', 'assignment'),
+          createItem('Implement caching strategy: Cache API responses with TTL, handle cache invalidation', 'assignment'),
+          createItem('Build cache layer: Create cache-aside pattern for frequently accessed data', 'assignment'),
+          createItem('Optimize performance: Measure cache hit rates, reduce database load', 'assignment'),
+        ]),
       ]),
       createWeek(2, 'Real-time Tracking', [
         createDay(1, 'Socket.io', [
@@ -843,7 +932,12 @@ export const roadmapData: Month[] = [
           createItem('emitting events', 'topic'),
           createItem('listening for location updates', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Build real-time location tracker: Socket.io server with location updates', 'assignment'),
+          createItem('Implement live map: Display real-time driver locations on map using Socket.io', 'assignment'),
+          createItem('Handle connection management: Reconnection logic, room management, event handling', 'assignment'),
+          createItem('Test real-time features: Write tests for Socket.io events and connections', 'assignment'),
+        ]),
       ]),
       createWeek(3, 'Payments & Testing', [
         createDay(1, 'Testing Strategies & TDD', [
@@ -888,7 +982,12 @@ export const roadmapData: Month[] = [
           createItem('Testing Payment Flows', 'topic'),
           createItem('Mocking Payment APIs', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Implement payment integration: SSLCommerz/Stripe with webhook handling', 'assignment'),
+          createItem('Write payment tests: Test payment flows, webhook processing, error handling', 'assignment'),
+          createItem('Practice TDD: Write tests first, then implement payment features', 'assignment'),
+          createItem('Mock payment APIs: Create mock services for testing without real transactions', 'assignment'),
+        ]),
       ]),
       createWeek(4, 'Docker', [
         createDay(1, 'Docker Basics & Networking', [
@@ -940,7 +1039,12 @@ export const roadmapData: Month[] = [
           createItem('Docker Compose services (App+Redis+DB)', 'project'),
           createItem('Kubernetes Deployment Practice', 'project'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Containerize application: Create Dockerfile with multi-stage builds', 'assignment'),
+          createItem('Set up Docker Compose: Configure services for app, Redis, and database', 'assignment'),
+          createItem('Deploy to Kubernetes: Create pods, deployments, services, and ConfigMaps', 'assignment'),
+          createItem('Practice kubectl: Master basic commands for managing Kubernetes clusters', 'assignment'),
+        ]),
       ]),
     ],
   },
@@ -992,7 +1096,12 @@ export const roadmapData: Month[] = [
           createItem('AWS Parameter Store/Secrets Manager', 'topic'),
         ]),
         createDay(6, 'Review & Rest', []),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Set up Linux server: Configure SSH, manage file permissions, process management', 'assignment'),
+          createItem('Configure NGINX: Reverse proxy setup, load balancing configuration', 'assignment'),
+          createItem('Set up PM2: Process manager with cluster mode and auto-restart', 'assignment'),
+          createItem('Manage environments: Configure .env files, secrets management across servers', 'assignment'),
+        ]),
       ]),
       createWeek(2, 'Monitoring & Documentation', [
         createDay(1, 'Monitoring & Alerting', [
@@ -1035,7 +1144,12 @@ export const roadmapData: Month[] = [
           createItem('Swagger/OpenAPI setup', 'topic'),
           createItem('System Architecture Diagrams (Draw.io, Excalidraw)', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Set up monitoring: Sentry error tracking, LogRocket session replay, alerts', 'assignment'),
+          createItem('Configure APM: New Relic/Datadog for performance monitoring and tracking', 'assignment'),
+          createItem('Create documentation: Swagger/OpenAPI setup, system architecture diagrams', 'assignment'),
+          createItem('Analyze performance: Identify bottlenecks, optimize queries, detect memory leaks', 'assignment'),
+        ]),
       ]),
       createWeek(3, 'System Design', [
         createDay(1, 'System Design', [
@@ -1080,7 +1194,12 @@ export const roadmapData: Month[] = [
           createItem('Design a Scalable System', 'practice'),
           createItem('Architecture Diagrams', 'practice'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Design scalable system: Apply database sharding, read replicas, caching strategies', 'assignment'),
+          createItem('Implement message queues: Set up Bull/RabbitMQ for async job processing', 'assignment'),
+          createItem('Apply design patterns: Microservices, API Gateway, Circuit Breaker patterns', 'assignment'),
+          createItem('Create architecture diagram: Document system design with scalability considerations', 'assignment'),
+        ]),
       ]),
       createWeek(4, 'Job Hunt', [
         createDay(1, 'Job Hunt', [
@@ -1114,7 +1233,12 @@ export const roadmapData: Month[] = [
           createItem('LinkedIn Outreach', 'topic'),
           createItem('Applications', 'topic'),
         ]),
-        createDay(7, 'Review & Rest', []),
+        createDay(7, 'Review & Rest', [
+          createItem('Optimize resume: Highlight backend skills, projects, and achievements', 'assignment'),
+          createItem('Update LinkedIn: Professional profile, showcase projects, network with developers', 'assignment'),
+          createItem('Prepare portfolio: Document all projects with live demos and GitHub links', 'assignment'),
+          createItem('Practice interviews: System design questions, coding challenges, behavioral questions', 'assignment'),
+        ]),
       ]),
     ],
   },
